@@ -6,7 +6,7 @@ export const HomeScreen = () => {
     const navigation = useNavigation();
 
     return (
-        <View>
+        <View className="flex-1 items-center justify-center">
             <Button
                 title="Go to All Events"
                 onPress={() => navigation.navigate('All upcoming Events')}
