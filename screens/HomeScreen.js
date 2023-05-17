@@ -11,6 +11,10 @@ export const HomeScreen = () => {
                 title="Go to All Events"
                 onPress={() => navigation.navigate('All upcoming Events')}
             />
+            <Button
+                title="Go to EventComponent component"
+                onPress={() => navigation.navigate('Events component')}
+            />
         </View>
     );
 }
