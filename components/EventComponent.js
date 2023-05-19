@@ -1,7 +1,7 @@
 import {Text, View, FlatList, Image, TouchableOpacity} from "react-native";
 import data from "../utils/dummyData";
 import Icon from 'react-native-vector-icons/FontAwesome';
-import {useState} from "react"; // import the icon library
+import {useState} from "react";
 
 
 export const EventComponent = () => {
