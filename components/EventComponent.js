@@ -21,6 +21,7 @@ export const EventComponent = () => {
         );
     };
 
+
     const renderItem = ({ item }) => {
 
         return (
