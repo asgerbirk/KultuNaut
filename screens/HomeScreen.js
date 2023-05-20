@@ -11,6 +11,10 @@ export const HomeScreen = () => {
                 title="Go to All Events"
                 onPress={() => navigation.navigate('All upcoming Events')}
             />
+            <Button
+                title="Detail Event View"
+                onPress={() => navigation.navigate('Detail Event View')}
+            />
         </View>
     );
 }
