@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import data from "../utils/dummyData.json";
-import {TextInput, View, Image, StyleSheet, Button, Text, ScrollView} from "react-native";
+import {TextInput, View, Image, StyleSheet, Button, Text, ScrollView, TouchableOpacity} from "react-native";
 
 export const DetailView = ({ routeData }) => {
     const itemId = 16499968;
@@ -70,11 +70,43 @@ export const DetailView = ({ routeData }) => {
           </View>
       );
     }
+    const RenderButton = ({}) => {
+      return(
+        <View className="bg-gray-800 px-4" style={styles.container}>
+          <View>
+            <Button
+                  title="Køb billet"
+                  color="#22293c"
+                  accessibilityLabel="Learn more about this purple button"
+                  style={styles.button}
+                />
+          </View>
+        </View>
+      )
+    }
     return(
     <ScrollView>
         <RenderImage item={selectedItem} />
         <RenderHeadline item={selectedItem} />
         <RenderDescription item={selectedItem} />
+        <RenderButton />
     </ScrollView>
     )
 }
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  scrollContainer: {
+    flexGrow: 1,
+    paddingBottom: 60, // Adjust this value to your button's height
+  },
+  buttonContainer: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    backgroundColor: 'gray',
+    paddingHorizontal: 4,
+  }
+})
