@@ -77,7 +77,6 @@ export const DetailView = ({ routeData }) => {
             <Button
                   title="Køb billet"
                   color="#22293c"
-                  accessibilityLabel="Learn more about this purple button"
                   style={styles.button}
                 />
           </View>
