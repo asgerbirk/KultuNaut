@@ -1,8 +1,8 @@
 import { StyleSheet, View, Button, Share } from 'react-native';
 
-function shareEvent() {
+function shareEvent(title, link, description) {
     const shareOptions = {
-        message: 'Se det her event fra Kultunaut:\nGoogle Event.\nLink: https://google.com',
+        message: `Se det her event fra Kultunaut!\nTitel: ${title}.\nBeskrivelse: ${description}\nLink: ${link}`,
       };
 
     Share.share(shareOptions)
@@ -14,12 +14,12 @@ function shareEvent() {
     });
 };
 
-export const ShareEventButton = () => (
+export const ShareEventButton = ({title, link, description}) => (
     <View style={styles.button}>
         <Button 
         title='Share event'
         color='grey'
-        onPress={shareEvent}
+        onPress={() => shareEvent(title, link, description)}
         />
     </View>
 );

@@ -21,7 +21,9 @@ export const Home = () => {
         <FrontpageOverlayButton source={buttonImage1} text='Find begivenheder'/>
         <FrontpageOverlayButton source={buttonImage2} text='Kommende begivenheder'/>
         <FrontpageOverlayButton source={buttonImage3} text='Bliv inspireret'/>
-        <ShareEventButton />
+
+        <ShareEventButton title="Dans i Fælledparken" description="En aften med dans and sang." link="https://www.google.com"/>
+      
       </View>
     </View>
   );
