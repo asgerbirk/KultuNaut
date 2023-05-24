@@ -1,28 +1,29 @@
 import React, { useState, useEffect } from 'react';
 import data from "../utils/dummyData.json";
-import {TextInput, View, Image, StyleSheet, Button, Text, ScrollView, TouchableOpacity} from "react-native";
+import {TextInput, View, Image, StyleSheet, Button, Text, ScrollView, TouchableOpacity, useWindowDimensions} from "react-native";
+import HTML from "react-native-render-html"
 
 export const DetailView = ({ routeData }) => {
-    const itemId = 16499968;
+    const itemId = 16281137;
 
     const [dummyData, setDummyData] = useState(data.result.map(item => ({ ...item })));
 
     const selectedItem = dummyData.find(item => item.Id === itemId);
     //const htmlString = selectedItem.Longdescription
     //const cleanedString = cleanAndFormatString(htmlString);
-    selectedItem.Longdescription = cleanAndFormatString(selectedItem.Longdescription);
+    //selectedItem.Longdescription = cleanAndFormatString(selectedItem.Longdescription);
     selectedItem.Enddate = formatDate(selectedItem.Enddate);
 
-    function cleanAndFormatString(inputString) {
-      // Remove HTML tags using regular expressions
-      var cleanedString = inputString.replace(/<.*?>/g, '');
+    // function cleanAndFormatString(inputString) {
+    //   Remove HTML tags using regular expressions
+    //   var cleanedString = inputString.replace(/<.*?>/g, '');
     
-      // Add line breaks and spacing
-      var formattedString = cleanedString.replace(/([a-zæøåÆØÅ])([A-ZÆØÅ])/g, '$1.\n$2');
-      formattedString = formattedString.replace(/\.(?=\w)/g, '. ');
+    //   Add line breaks and spacing
+    //   var formattedString = cleanedString.replace(/([a-zæøåÆØÅ])([A-ZÆØÅ])/g, '$1.\n$2');
+    //   formattedString = formattedString.replace(/\.(?=\w)/g, '. ');
     
-      return formattedString.trim();
-    }
+    //   return formattedString.trim();
+    // }
     function formatDate(dateString){
       const [day, month, year] = dateString.split('-').map(Number);
       const date = new Date(year, month - 1, day);
@@ -61,11 +62,12 @@ export const DetailView = ({ routeData }) => {
       );
     };
     const RenderDescription = ({item}) => {
+      const { width } = useWindowDimensions();
       return(
           <View className="bg-white px-4">
             <Text className="text-lg pt-3 font-bold">Begivenheden</Text>
-            <View className="pt-2">
-              <Text>{item.Longdescription}</Text>
+            <View className="pt-2 pb-4">
+              <HTML source={{html: item.Longdescription}} contentWidth={width} />
             </View>
           </View>
       );
@@ -73,8 +75,9 @@ export const DetailView = ({ routeData }) => {
     const RenderButton = ({}) => {
       return(
         <View className="bg-gray-800 px-4" style={styles.container}>
-          <View>
+          <View style={styles.buttonContainer} className="w-fit">
             <Button
+                  className="w-full"
                   title="Køb billet"
                   color="#22293c"
                   style={styles.button}
@@ -101,11 +104,11 @@ const styles = StyleSheet.create({
     paddingBottom: 60, // Adjust this value to your button's height
   },
   buttonContainer: {
-    position: 'absolute',
-    bottom: 0,
     left: 0,
     right: 0,
     backgroundColor: 'gray',
-    paddingHorizontal: 4,
-  }
+    position:'absolute',
+    bottom:0,
+    alignSelf:'flex-end'
+  },
 })
