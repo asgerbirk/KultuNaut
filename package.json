@@ -24,7 +24,6 @@
     "react-native-elements": "^3.4.3",
     "react-native-dotenv": "^3.4.8",
     "react-native-vector-icons": "^9.2.0",
-    "react-native-elements": "^3.4.3",
     "react-native-select-dropdown": "^3.3.3"
   },
   "devDependencies": {
