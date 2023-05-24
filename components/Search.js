@@ -2,6 +2,8 @@ import React, {useEffect, useState} from 'react';
 import { View, Text, Button } from 'react-native';
 import SelectDropdown from 'react-native-select-dropdown';
 import {DatePicker} from "./DatePicker";
+import {getToken} from "../lib/authToken";
+import {API_KEY} from "react-native-dotenv";
 
 export const SearchBarComponent = () => {
     const [selectedCity, setSelectedCity] = useState("");
@@ -9,6 +11,7 @@ export const SearchBarComponent = () => {
     const [longitude, setLongitude] = useState("");
     const [latitude, setLatitude] = useState("");
 
+    const apiKey = encodeURIComponent(API_KEY)
     const cities = ['Roskilde', 'København', 'Nakskov'];
 
     useEffect(() => {
@@ -34,22 +37,36 @@ export const SearchBarComponent = () => {
         setSelectedDate(date);
     };
 
+    const [token, setToken] = useState("");
+
+    useEffect( () => {
+        const fetchToken = async() => {
+            const token = await getToken();
+            setToken(token);
+        }
+        fetchToken();
+    }, []);
+
     const handleSearch = () => {
         if (selectedCity) {
             const radius = 1000; // Radius parameter (skift til den ønskede standardværdi)
-
-            const url = `https://www.kultunaut.dk/perl/api2/EventLonLatDate?lat=${latitude}&lon=${longitude}&radius=${radius}`;
+            console.log(token);
+            const url = `https://www.kultunaut.dk/perl/api2/EventLonLatDate?lat=${latitude}&lon=${longitude}&radius=${radius}&fieldlist=Changed`;
             console.log(url)
 
-            fetch(url)
+            fetch(url, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            })
                 .then(response => response.json())
                 .then(data => {
-                    // Behandle resultatet fra slut-API'en
-                    console.log('Resultater:', data);
-                    // Opdater din tilstandsvariabel eller udfør andre handlinger med resultatet
+                    // Handle the response data
+                    console.log('Results:', data);
+                    // Update your state variable or perform other actions with the result
                 })
                 .catch(error => {
-                    console.error('Fejl:', error);
+                    console.error('Error:', error);
                 });
         }
     };
