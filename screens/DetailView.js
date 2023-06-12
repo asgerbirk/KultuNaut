@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import data from "../utils/dummyData.json";
 import {TextInput, View, Image, StyleSheet, Button, Text, ScrollView, TouchableOpacity, useWindowDimensions} from "react-native";
 import HTML from "react-native-render-html"
+import SaveToCalenderButton from "../components/SaveToCalenderButton";
 
 export const DetailView = ({ routeData }) => {
     const itemId = 16281137;
@@ -86,12 +87,15 @@ export const DetailView = ({ routeData }) => {
         </View>
       )
     }
+
+
     return(
     <ScrollView>
         <RenderImage item={selectedItem} />
         <RenderHeadline item={selectedItem} />
         <RenderDescription item={selectedItem} />
         <RenderButton />
+        <SaveToCalenderButton event={selectedItem}/>
     </ScrollView>
     )
 }

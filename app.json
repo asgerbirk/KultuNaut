@@ -25,6 +25,14 @@
     },
     "web": {
       "favicon": ""
-    }
+    },
+    "plugins": [
+      [
+        "expo-calendar",
+        {
+          "calendarPermission": "The app needs to access your calendar."
+        }
+      ]
+    ]
   }
 }
