@@ -17,6 +17,7 @@ export const LikedEventsProvider = ({children}) => {
             newLikedEvents = [...likedEvents, event]
         }
         setLikedEvents(newLikedEvents)
+
     }
 
     return(
