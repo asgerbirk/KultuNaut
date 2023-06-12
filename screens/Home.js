@@ -6,9 +6,13 @@ import logo from '../assets/kultunaut_logo.png';
 import buttonImage1 from '../assets/frontpage_image_1.jpg';
 import buttonImage2 from '../assets/frontpage_image_2.jpg';
 import buttonImage3 from '../assets/frontpage_image_3.jpg';
+import {useNavigation} from "@react-navigation/native";
 
 
 export const Home = () => {
+
+  const navigation = useNavigation();
+
   return (
     <View style={styles.container}>
       <Image 
@@ -18,8 +22,16 @@ export const Home = () => {
       />
       
       <View style={styles.buttonContainer}>
-        <FrontpageOverlayButton source={buttonImage1} text='Find begivenheder'/>
-        <FrontpageOverlayButton source={buttonImage2} text='Kommende begivenheder'/>
+        <FrontpageOverlayButton
+          source={buttonImage1}
+          text='Find begivenheder'
+          onPress={() => navigation.navigate('All upcoming Events')}
+        />
+        <FrontpageOverlayButton
+          source={buttonImage2}
+          text='Kommende begivenheder'
+          onPress={() => navigation.navigate('Events component')}
+        />
         <FrontpageOverlayButton source={buttonImage3} text='Bliv inspireret'/>
 
         <ShareEventButton title="Dans i Fælledparken" description="En aften med dans and sang." link="https://www.google.com"/>
