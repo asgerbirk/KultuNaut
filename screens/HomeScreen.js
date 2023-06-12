@@ -23,6 +23,10 @@ export const HomeScreen = () => {
                 title="Go to EventComponent component"
                 onPress={() => navigation.navigate('Events component')}
             />
+            <Button
+                title="Liked events"
+                onPress={() => navigation.navigate('Liked events')}
+            />
         </View>
     );
 }
