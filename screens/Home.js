@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Image, StyleSheet } from 'react-native';
+import { View, Image, StyleSheet, Button} from 'react-native';
 import { FrontpageOverlayButton } from '../components/FrontpageOverlayButton';
 import { ShareEventButton } from '../components/ShareEventButton';
 import logo from '../assets/kultunaut_logo.png';
@@ -35,7 +35,11 @@ export const Home = () => {
         <FrontpageOverlayButton source={buttonImage3} text='Bliv inspireret'/>
 
         <ShareEventButton title="Dans i Fælledparken" description="En aften med dans and sang." link="https://www.google.com"/>
-      
+        <Button
+            title="Liked events"
+            onPress={() => navigation.navigate('Liked events')}
+        />
+
       </View>
     </View>
   );

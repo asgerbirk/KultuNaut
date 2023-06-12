@@ -2,7 +2,7 @@ import { Text, View, FlatList, Image, TouchableOpacity } from "react-native";
 import data from "../utils/dummyData";
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { useContext } from "react";
-import {LikedEventsContext} from "../context/LikedEventsContext"; // Import useContext
+import {LikedEventsContext} from "../context/LikedEventsContext";
 
 export const EventComponent = () => {
     const { likedEvents, toggleLike } = useContext(LikedEventsContext); // Use the context
