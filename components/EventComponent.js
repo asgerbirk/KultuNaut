@@ -4,7 +4,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import {useState} from "react";
 
 
-export const EventComponent = () => {
+export const EventComponent = ({navigation}) => {
 
 
     //initializes dummyData state. tilføjer isLiked prop til hver element som er sat til falsk(ingen farve)
@@ -25,7 +25,8 @@ export const EventComponent = () => {
     const renderItem = ({ item }) => {
 
         return (
-            <View className="p-1.5 bg-gray-800">
+            <TouchableOpacity onPress={() => navigation.navigate('Detail Event View', { eventId: item.Id })}>
+                <View className="p-1.5 bg-gray-800">
                 <View className="p-2.5 bg-white">
                 <Text className="font-bold text-sm">{item.Tags + " -"}</Text>
                     <View className="flex-row">
@@ -39,7 +40,8 @@ export const EventComponent = () => {
 
                     </TouchableOpacity>
                 </View>
-            </View>
+                </View>
+            </TouchableOpacity>
         );
     };
     //<Icon name={item.isLiked ? "heart" : "heart-o"} size={20} color={item.isLiked ? "#900" : "#000"} />
