@@ -16,8 +16,8 @@ export const HomeScreen = () => {
                 onPress={() => navigation.navigate('HomeTwo')}
             />
             <Button
-                title="Detail Event View"
-                onPress={() => navigation.navigate('Detail Event View')}
+                title="Login"
+                onPress={() => navigation.navigate('Login')}
             />
             <Button
                 title="Go to EventComponent component"

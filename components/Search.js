@@ -17,7 +17,6 @@ export const SearchBarComponent = () => {
     useEffect(() => {
         if (selectedCity) {
             const url = `https://www.mapquestapi.com/geocoding/v1/address?key=${apiKey}&location=${selectedCity}`;
-
             fetch(url)
                 .then(response => response.json())
                 .then(data => {

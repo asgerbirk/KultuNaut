@@ -66,7 +66,6 @@ export const DetailView = ({ route }) => {
                   className="w-full"
                   title="Køb billet"
                   color="#22293c"
-                  style={styles.button}
                 />
           </View>
         </View>
