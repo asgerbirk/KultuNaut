@@ -1,7 +1,7 @@
 import { Image, StyleSheet, Text, TouchableOpacity } from 'react-native';
 
-export const FrontpageOverlayButton = ({source, text}) => (
-    <TouchableOpacity style={styles.button} >
+export const FrontpageOverlayButton = ({source, text, onPress}) => (
+    <TouchableOpacity style={styles.button} onPress={onPress}>
         <Image source={source} style={styles.buttonImage} />
         <Text style={styles.buttonText}>{text}</Text>
     </TouchableOpacity>

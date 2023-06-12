@@ -1,37 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import data from "../utils/dummyData.json";
-import {TextInput, View, Image, StyleSheet, Button, Text, ScrollView, TouchableOpacity, useWindowDimensions} from "react-native";
+import {View, Image, StyleSheet, Button, Text, ScrollView, TouchableOpacity, useWindowDimensions} from "react-native";
 import HTML from "react-native-render-html"
 
-export const DetailView = ({ routeData }) => {
-    const itemId = 16281137;
+export const DetailView = ({ route }) => {
+    const {eventId} = route.params;
+    const itemId = Number(eventId);
 
     const [dummyData, setDummyData] = useState(data.result.map(item => ({ ...item })));
-
     const selectedItem = dummyData.find(item => item.Id === itemId);
-    //const htmlString = selectedItem.Longdescription
-    //const cleanedString = cleanAndFormatString(htmlString);
-    //selectedItem.Longdescription = cleanAndFormatString(selectedItem.Longdescription);
+
     selectedItem.Enddate = formatDate(selectedItem.Enddate);
 
-    // function cleanAndFormatString(inputString) {
-    //   Remove HTML tags using regular expressions
-    //   var cleanedString = inputString.replace(/<.*?>/g, '');
-    
-    //   Add line breaks and spacing
-    //   var formattedString = cleanedString.replace(/([a-zæøåÆØÅ])([A-ZÆØÅ])/g, '$1.\n$2');
-    //   formattedString = formattedString.replace(/\.(?=\w)/g, '. ');
-    
-    //   return formattedString.trim();
-    // }
     function formatDate(dateString){
       const [day, month, year] = dateString.split('-').map(Number);
       const date = new Date(year, month - 1, day);
       const options = {weekday: 'long', day: 'numeric', month: 'long', year: 'numeric'};
       const formattedDate = date.toLocaleDateString('da-DK', options);
       const capitalizedDate = formattedDate.charAt(0).toUpperCase() + formattedDate.slice(1);
-      console.log(selectedItem.Enddate);
-      console.log(capitalizedDate);
       return capitalizedDate;
     }
     
