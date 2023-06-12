@@ -17,6 +17,25 @@ const SaveToCalenderButton = (props) => {
             const { status } = await Calendar.requestCalendarPermissionsAsync()
             if (status === 'granted') {
 
+                const details = {
+                    name: "Kulturnaut kalender",
+                    color: "blue",
+                    title: "Kulturnaut kalender",
+                    source: {
+                            name: "Kulturnaut",
+                            isLocalAccount: true
+                        },
+                    accessLevel: 'readWrite',
+                    ownerAccount: ""
+                }
+
+                const response = await Calendar.createCalendarAsync(details)
+                console.log(response)
+
+
+                //const response = await Calendar.createEventAsync(calendarId, eventData)
+                //console.log(response)
+
 
             } else if (status === "denied"){
                 setModalVisible(true)
@@ -54,7 +73,6 @@ const SaveToCalenderButton = (props) => {
                         </View>
 
                         <View className={"flex justify-between"}>
-
                             <Button
                                 title='Settings'
                                 color='grey'
@@ -66,10 +84,7 @@ const SaveToCalenderButton = (props) => {
                                 color='grey'
                                 onPress={() => {setModalVisible(false)}}
                             />
-
-
                         </View>
-
                     </View>
 
 
