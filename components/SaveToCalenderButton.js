@@ -8,7 +8,6 @@ const SaveToCalenderButton = (props) => {
 
     const [modalVisible, setModalVisible] = useState(false);
 
-
     // DOCS
     // https://docs.expo.dev/versions/latest/sdk/calendar/
 
@@ -16,6 +15,9 @@ const SaveToCalenderButton = (props) => {
         (async () => {
             const { status } = await Calendar.requestCalendarPermissionsAsync()
             if (status === 'granted') {
+
+                const calendars = await Calendar.getCalendarsAsync(Calendar.EntityTypes.EVENT);
+                console.log({ calendars });
 
                 const details = {
                     name: "Kulturnaut kalender",
@@ -29,28 +31,18 @@ const SaveToCalenderButton = (props) => {
                     ownerAccount: ""
                 }
 
-                const response = await Calendar.createCalendarAsync(details)
-                console.log(response)
-
-
-                //const response = await Calendar.createEventAsync(calendarId, eventData)
+                //const response = await Calendar.createCalendarAsync(details)
                 //console.log(response)
-
-
             } else if (status === "denied"){
                 setModalVisible(true)
             }
         })()
-
     }
-
-    useEffect(() => {
-
-    }, [])
-
 
     return (
         <>
+
+            <!-- MODAL WHEN APP HAS NO ACCESS TO PHONES CALLENDER-->
             <Modal
                 visible={modalVisible}
                 animationType="fade"
@@ -59,10 +51,7 @@ const SaveToCalenderButton = (props) => {
                     setModalVisible(!modalVisible);
                 }}
             >
-
                 <View className={"x-0  mx-auto my-auto bg-gray-300 w-1/2 h-1/4 p-5 rounded"}>
-
-
                     <View className={"flex justify-between h-full"}>
                         <View>
                             <Text className={"font-bold"}>App har ikke adgang til calender:</Text>
@@ -86,12 +75,7 @@ const SaveToCalenderButton = (props) => {
                             />
                         </View>
                     </View>
-
-
-
-
                 </View>
-
             </Modal>
 
 
