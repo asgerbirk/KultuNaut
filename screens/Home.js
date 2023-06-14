@@ -32,13 +32,13 @@ export const Home = () => {
           text='Kommende begivenheder'
           onPress={() => navigation.navigate('Events component')}
         />
-        <FrontpageOverlayButton source={buttonImage3} text='Bliv inspireret'/>
-
-        <ShareEventButton title="Dans i Fælledparken" description="En aften med dans and sang." link="https://www.google.com"/>
-        <Button
-            title="Liked events"
-            onPress={() => navigation.navigate('Liked events')}
+        <FrontpageOverlayButton
+          source={buttonImage3}
+          text='Dine begivenheder'
+          onPress={() => navigation.navigate('Liked events')}
         />
+
+        {/* <ShareEventButton title="Dans i Fælledparken" description="En aften med dans and sang." link="https://www.google.com"/> */}
 
       </View>
     </View>
