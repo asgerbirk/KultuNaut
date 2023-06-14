@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import data from "../utils/dummyData.json";
-import {View, Image, StyleSheet, Button, Text, ScrollView, TouchableOpacity, useWindowDimensions} from "react-native";
+import {View, Image, Button, Text, ScrollView, TouchableOpacity, useWindowDimensions} from "react-native";
 import HTML from "react-native-render-html"
 
 export const DetailView = ({ route }) => {
@@ -60,13 +60,12 @@ export const DetailView = ({ route }) => {
     }
     const RenderButton = ({}) => {
       return(
-        <View className="bg-gray-800 px-4" style={styles.container}>
-          <View style={styles.buttonContainer} className="w-fit">
+        <View className="bg-gray-800 px-4 mt-10 flex">
+          <View className="w-fit left-0 right-0 absolute bottom-0 self-end">
             <Button
                   className="w-full"
                   title="Køb billet"
                   color="#22293c"
-                  style={styles.button}
                 />
           </View>
         </View>
@@ -81,20 +80,3 @@ export const DetailView = ({ route }) => {
     </ScrollView>
     )
 }
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  scrollContainer: {
-    flexGrow: 1,
-    paddingBottom: 60, // Adjust this value to your button's height
-  },
-  buttonContainer: {
-    left: 0,
-    right: 0,
-    backgroundColor: 'gray',
-    position:'absolute',
-    bottom:0,
-    alignSelf:'flex-end'
-  },
-})

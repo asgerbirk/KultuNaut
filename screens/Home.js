@@ -12,14 +12,14 @@ export const Home = () => {
   const navigation = useNavigation();
 
   return (
-    <View style={styles.container}>
+    <View style={styles.container} className="flex-1 items-center">
       <Image 
         source={logo}
-        style={styles.logo}
         resizeMode='contain'
+        className="w-80 h-28 my-7"
       />
       
-      <View style={styles.buttonContainer}>
+      <View className="flex-col w-full px-2.5 items-center">
         <FrontpageOverlayButton
           source={buttonImage1}
           text='Find begivenheder'
@@ -42,21 +42,6 @@ export const Home = () => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     backgroundColor: '#22293C',
-    alignItems: 'center',
-
   },
-  logo: {
-    width: 300,
-    height: 100,
-    marginTop: 25,
-    marginBottom: 25,
-  },
-  buttonContainer: {
-    flexDirection: 'column',
-    width: '100%',
-    paddingHorizontal: 10,
-    alignItems: "center"
-  }
 });
