@@ -14,48 +14,36 @@ export const Login = ({}) => {
         <SafeAreaView style={styles.container}>
             <Image 
                 source={logo}
-                style={styles.logo}
                 resizeMode='contain'
+                className="w-80 h-28 mb-28 mt-12"
                 />
             <TextInput
-                style={styles.input}
                 onChangeText={setUsername}
                 value={username}
                 placeholder="username"
-                className="w-64"
+                className="w-64 h-10 m-3 p-2.5 border rounded-lg bg-white"
             />
             <TextInput
-                style={styles.input}
                 onChangeText={setPassword}
                 value={password}
                 placeholder="password"
-                className="w-64 text-white"
+                className="w-64 h-10 m-3 p-2.5 border rounded-lg bg-white"
+                secureTextEntry={true}
             />
-            <Button
-                  className="w-full"
+            <View className="w-2/5 border border-white rounded mt-4">
+                 <Button
                   title="Login"
                   color="#22293c"
                 />
+            </View>
+           
     </SafeAreaView>
     )
 }
 const styles = StyleSheet.create({
-    input: {
-      height: 40,
-      margin: 12,
-      borderWidth: 1,
-      padding: 10,
-      borderRadius: 10
-    },
     container: {
         flex: 1,
         backgroundColor: '#22293C',
         alignItems: 'center',
-      },
-      logo: {
-        width: 300,
-        height: 100,
-        marginTop: 25,
-        marginBottom: 25,
       },
   });
