@@ -1,4 +1,4 @@
-import { StyleSheet, View, Button, Share } from 'react-native';
+import { View, Button, Share } from 'react-native';
 
 function shareEvent(title, link, description) {
     const shareOptions = {
@@ -15,7 +15,7 @@ function shareEvent(title, link, description) {
 };
 
 export const ShareEventButton = ({title, link, description}) => (
-    <View style={styles.button}>
+    <View className="w-32 rounded-3xl">
         <Button 
         title='Share event'
         color='grey'
@@ -24,9 +24,3 @@ export const ShareEventButton = ({title, link, description}) => (
     </View>
 );
 
-const styles = StyleSheet.create({
-    button: {
-        width: 125,
-        borderRadius: 20
-    }
-});

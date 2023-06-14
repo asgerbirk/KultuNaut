@@ -1,38 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import data from "../utils/dummyData.json";
-import {TextInput, View, Image, StyleSheet, Button, Text, ScrollView, TouchableOpacity, useWindowDimensions} from "react-native";
+import {View, Image, Button, Text, ScrollView, TouchableOpacity, useWindowDimensions} from "react-native";
 import HTML from "react-native-render-html"
 import SaveToCalenderButton from "../components/SaveToCalenderButton";
 
-export const DetailView = ({ routeData }) => {
-    const itemId = 16281137;
+export const DetailView = ({ route }) => {
+    const {eventId} = route.params;
+    const itemId = Number(eventId);
 
     const [dummyData, setDummyData] = useState(data.result.map(item => ({ ...item })));
-
     const selectedItem = dummyData.find(item => item.Id === itemId);
-    //const htmlString = selectedItem.Longdescription
-    //const cleanedString = cleanAndFormatString(htmlString);
-    //selectedItem.Longdescription = cleanAndFormatString(selectedItem.Longdescription);
+
     selectedItem.Enddate = formatDate(selectedItem.Enddate);
 
-    // function cleanAndFormatString(inputString) {
-    //   Remove HTML tags using regular expressions
-    //   var cleanedString = inputString.replace(/<.*?>/g, '');
-    
-    //   Add line breaks and spacing
-    //   var formattedString = cleanedString.replace(/([a-zæøåÆØÅ])([A-ZÆØÅ])/g, '$1.\n$2');
-    //   formattedString = formattedString.replace(/\.(?=\w)/g, '. ');
-    
-    //   return formattedString.trim();
-    // }
     function formatDate(dateString){
       const [day, month, year] = dateString.split('-').map(Number);
       const date = new Date(year, month - 1, day);
       const options = {weekday: 'long', day: 'numeric', month: 'long', year: 'numeric'};
       const formattedDate = date.toLocaleDateString('da-DK', options);
       const capitalizedDate = formattedDate.charAt(0).toUpperCase() + formattedDate.slice(1);
-      console.log(selectedItem.Enddate);
-      console.log(capitalizedDate);
       return capitalizedDate;
     }
     
@@ -75,13 +61,12 @@ export const DetailView = ({ routeData }) => {
     }
     const RenderButton = ({}) => {
       return(
-        <View className="bg-gray-800 px-4" style={styles.container}>
-          <View style={styles.buttonContainer} className="w-fit">
+        <View className="bg-gray-800 px-4 mt-10 flex">
+          <View className="w-fit left-0 right-0 absolute bottom-0 self-end">
             <Button
                   className="w-full"
                   title="Køb billet"
                   color="#22293c"
-                  style={styles.button}
                 />
           </View>
         </View>
@@ -99,20 +84,3 @@ export const DetailView = ({ routeData }) => {
     </ScrollView>
     )
 }
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  scrollContainer: {
-    flexGrow: 1,
-    paddingBottom: 60, // Adjust this value to your button's height
-  },
-  buttonContainer: {
-    left: 0,
-    right: 0,
-    backgroundColor: 'gray',
-    position:'absolute',
-    bottom:0,
-    alignSelf:'flex-end'
-  },
-})
