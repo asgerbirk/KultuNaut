@@ -6,7 +6,9 @@ export const Login = ({}) => {
     const [username, setUsername] = useState()
     const [password, setPassword] = useState()
 
-
+    async function submitLogin(){
+        
+    }
 
     return(
         <SafeAreaView style={styles.container}>
