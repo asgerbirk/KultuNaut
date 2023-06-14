@@ -3,8 +3,10 @@ import data from "../utils/dummyData";
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { useContext } from "react";
 import {LikedEventsContext} from "../context/LikedEventsContext";
+import {useNavigation} from "@react-navigation/native";
 
 export const EventComponent = () => {
+    const navigation = useNavigation();
     const { likedEvents, toggleLike } = useContext(LikedEventsContext); // Use the context
 
     // Adds isLiked prop to each item in the data array
