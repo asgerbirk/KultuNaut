@@ -17,7 +17,8 @@ export const LikedEventsProvider = ({children}) => {
             //hvis eventet ikke er liket, så bliver det liket
             newLikedEvents = [...likedEvents, event]
         }
-        try {await AsyncStorage.setItem("likedEvents", JSON.stringify(newLikedEvents))
+        try {
+            await AsyncStorage.setItem("likedEvents", JSON.stringify(newLikedEvents))
             setLikedEvents(newLikedEvents)
         } catch (err) {
             console.log(err)

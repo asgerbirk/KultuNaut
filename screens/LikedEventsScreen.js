@@ -1,9 +1,10 @@
-import { Text, View, FlatList, Image } from 'react-native';
+import {Text, View, FlatList, Image, TouchableOpacity} from 'react-native';
 import { useContext } from 'react';
 import {LikedEventsContext} from "../context/LikedEventsContext";
+import Icon from "react-native-vector-icons/FontAwesome";
 
 export const LikedEventsScreen = () => {
-    const { likedEvents } = useContext(LikedEventsContext);
+    const { likedEvents, toggleLike } = useContext(LikedEventsContext);
 
     const renderItem = ({ item }) => {
         return (
@@ -16,6 +17,9 @@ export const LikedEventsScreen = () => {
                     </View>
                     <Text className="font-bold text-base">{item.Title}</Text>
                     <Image source={{uri: item.Image}} className="h-44 w-full" resizeMode={"cover"}/>
+                    <TouchableOpacity className="absolute top-4 right-4 bg-gray-400 p-2 rounded" onPress={() => toggleLike(item)}>
+                        <Icon name="heart" size={20} color="#900" />
+                    </TouchableOpacity>
                 </View>
             </View>
         );
