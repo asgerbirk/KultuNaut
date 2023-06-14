@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import data from "../utils/dummyData.json";
-import {View, Image, StyleSheet, Button, Text, ScrollView, TouchableOpacity, useWindowDimensions} from "react-native";
+import {View, Image, StyleSheet, Button, Text, ScrollView, TouchableOpacity, useWindowDimensions, Share} from "react-native";
 import HTML from "react-native-render-html"
+import { ShareEventButton } from "../components/ShareEventButton";
 
 export const DetailView = ({ route }) => {
     const {eventId} = route.params;
@@ -41,8 +42,11 @@ export const DetailView = ({ route }) => {
           <View className="pb-1.5">
             <Text className="text-slate-400 text-lg">{item.LocationAddress}</Text>
           </View>
-          <View className="pb-4">
+          <View className="pb-2">
             <Text className="text-slate-400 text-lg">{item.Enddate}</Text>
+          </View>
+          <View className="pb-4">
+            <ShareEventButton title={item.Title} link={item.Link} description={item.Shortdescription} />
           </View>
         </View>
       );
