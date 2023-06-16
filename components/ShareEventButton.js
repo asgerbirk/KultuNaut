@@ -1,8 +1,8 @@
-import { StyleSheet, View, Button, Share } from 'react-native';
+import { TouchableOpacity, Text, Share } from 'react-native';
 
 function shareEvent(title, link, description) {
     const shareOptions = {
-        message: `Se det her event fra Kultunaut!\nTitel: ${title}.\nBeskrivelse: ${description}\nLink: ${link}`,
+        message: `Se det her event fra Kultunaut!\n\nTitel: ${title}.\n\nBeskrivelse: ${description}\n\nLink: ${link}`,
       };
 
     Share.share(shareOptions)
@@ -15,18 +15,10 @@ function shareEvent(title, link, description) {
 };
 
 export const ShareEventButton = ({title, link, description}) => (
-    <View style={styles.button}>
-        <Button 
-        title='Share event'
-        color='grey'
+    <TouchableOpacity 
+        className="w-32 h-12 bg-gray-500 rounded justify-center items-center"
         onPress={() => shareEvent(title, link, description)}
-        />
-    </View>
+    >
+        <Text className="text-white text-base">Share event</Text>
+    </TouchableOpacity>
 );
-
-const styles = StyleSheet.create({
-    button: {
-        width: 125,
-        borderRadius: 20
-    }
-});

@@ -1,46 +1,17 @@
 import { Image, StyleSheet, Text, TouchableOpacity } from 'react-native';
 
 export const FrontpageOverlayButton = ({source, text, onPress}) => (
-    <TouchableOpacity style={styles.button} onPress={onPress}>
-        <Image source={source} style={styles.buttonImage} />
-        <Text style={styles.buttonText}>{text}</Text>
+    <TouchableOpacity style={styles.button} className="w-11/12 h-32 m-2.5 items-center justify-center bg-black rounded-lg shadow-black border border-white shadow-lg" onPress={onPress}>
+        <Image source={source} className="absolute w-full h-full object-cover rounded-lg opacity-70" />
+        <Text style={styles.buttonText} className="absolute text-white font-bold text-xl">{text}</Text>
     </TouchableOpacity>
 )
 
 const styles = StyleSheet.create({
     button: {
-        width: "90%",
-        height: 125,
-        margin: 10,
-        alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: '#000',
-        borderRadius: 10, 
-        shadowColor: "#000", // Tilføjer skygge til iOS
-        shadowOffset: {
-            width: 0,
-            height: 2,
-        },
-        shadowOpacity: 0.25,
-        shadowRadius: 3.8,
         elevation: 5, // Til Android
-        borderColor: "white",
-        borderWidth: 1,
-
-    },
-    buttonImage: {
-        position: 'absolute',
-        width: '100%',
-        height: '100%',
-        resizeMode: 'cover',
-        borderRadius: 10, 
-        opacity: 0.7,
     },
     buttonText: {
-        position: 'absolute',
-        color: 'white',
-        fontWeight: 'bold',
-        fontSize: 20,
         textShadowColor: 'rgba(0, 0, 0, 0.9)',
         textShadowOffset: { width: -1, height: 1 }, 
         textShadowRadius: 10,
