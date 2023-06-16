@@ -16,8 +16,8 @@ export const Home = () => {
     StatusBar.setBackgroundColor('#FFFFFF'); // This is for Android
 
     return () => {
-      StatusBar.setBarStyle('default'); // Return to default color on IOS
-      StatusBar.setBackgroundColor('default color'); // Return to default color on Android
+      StatusBar.setBarStyle('default'); 
+      StatusBar.setBackgroundColor('default color'); 
     };
   }, []);
 
