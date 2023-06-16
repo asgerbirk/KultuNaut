@@ -15,20 +15,18 @@ const Stack = createStackNavigator();
 const BottomTab = createBottomTabNavigator()
 
 
-    function HomeStack() {
-        return (
+function HomeStack() {
+    return (
             <Stack.Navigator screenOptions={{ headerShown: false }}>
-                 <Stack.Screen name="Home" component={Home}/>
+                <Stack.Screen name="Home" component={Home} />
                 <Stack.Screen name="All upcoming Events" component={AllEvents} />
                 <Stack.Screen name="Detail Event View" component={DetailView} />
                 <Stack.Screen name="Events component" component={EventComponent} />
                 <Stack.Screen name="Liked events" component={LikedEventsScreen} />
                 <Stack.Screen name="Search Event" component={SearchEvent} />
-
-
             </Stack.Navigator>
-        );
-    }
+    );
+}
 
 
     export const Navigation = () => {
@@ -53,8 +51,8 @@ const BottomTab = createBottomTabNavigator()
                         },
 
                     })}>
-                        <BottomTab.Screen name="HomeScreen" component={HomeStack} options={{ tabBarLabel: 'Hjem', headerTitle: ""}} />
-                        <BottomTab.Screen name="Events component" component={EventComponent} options={{ tabBarLabel: ' Begivenheder', headerTitle: "" }} />
+                        <BottomTab.Screen name="HomeScreen" component={HomeStack} options={{ tabBarLabel: 'Hjem', headerShown: false, tabBarVisible: true }} />
+                        <BottomTab.Screen name="Events component" component={EventComponent} options={{ tabBarLabel: ' Begivenheder', headerShown: false }} />
                         <BottomTab.Screen name="Liked events" component={LikedEventsScreen} options={{ tabBarLabel: 'Dine begivenheder', headerTitle: "" }} />
                         <BottomTab.Screen name="Search Event" component={SearchEvent} options={{ tabBarLabel: 'Søg', headerTitle: "" }} />
                     </BottomTab.Navigator>
