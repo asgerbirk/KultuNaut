@@ -21,11 +21,12 @@ export const Navigation = () => {
                 <Stack.Screen name="Home" component={Home} />
                 <Stack.Screen name="All upcoming Events" component={AllEvents} />
                 <Stack.Screen name="Detail Event View" component={DetailView}/>
-                
                 <Stack.Screen name="HomeTwo" component={Home} />
+                
                 <Stack.Screen name="Events component" component={EventComponent} />
                 <Stack.Screen name="Liked events" component={LikedEventsScreen} />
                 <Stack.Screen name="Search Event" component={SearchEvent} />
+
             </Stack.Navigator>
         </NavigationContainer>
          </LikedEventsProvider>

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import data from "../utils/dummyData.json";
-import {View, Image, Button, Text, ScrollView, useWindowDimensions, Linking, Platform, Pressable, Share} from "react-native";
+import {View, Image, Button, Text, ScrollView, useWindowDimensions, Linking, Platform, Pressable, Share, StyleSheet} from "react-native";
 import HTML from "react-native-render-html"
 import { Feather } from '@expo/vector-icons'; 
 import { ShareEventButton } from "../components/ShareEventButton";

@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {View, Text, StyleSheet, FlatList, TextInput} from "react-native";
+import {View, Text, FlatList, TextInput} from "react-native";
 import { EvilIcons } from '@expo/vector-icons';
 import { DatePicker } from '../components/DatePicker';
 import { MaterialIcons } from '@expo/vector-icons'; 
