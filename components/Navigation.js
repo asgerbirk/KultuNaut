@@ -21,8 +21,11 @@ const BottomTab = createBottomTabNavigator()
                  <Stack.Screen name="Home" component={Home}/>
                 <Stack.Screen name="All upcoming Events" component={AllEvents} />
                 <Stack.Screen name="Detail Event View" component={DetailView} />
-
+                <Stack.Screen name="Events component" component={EventComponent} />
+                <Stack.Screen name="Liked events" component={LikedEventsScreen} />
                 <Stack.Screen name="Search Event" component={SearchEvent} />
+
+
             </Stack.Navigator>
         );
     }
@@ -42,6 +45,8 @@ const BottomTab = createBottomTabNavigator()
                                 iconName = focused ? 'calendar' : 'calendar-outline';
                             } else if (route.name === 'Liked events') {
                                 iconName = focused ? 'heart' : 'heart-outline';
+                            }else if (route.name === "Search Event"){
+                                iconName = focused ? "search" : "search-outline"
                             }
 
                             return <Ionicons name={iconName} size={size} color={color} />;
@@ -51,6 +56,7 @@ const BottomTab = createBottomTabNavigator()
                         <BottomTab.Screen name="HomeScreen" component={HomeStack} options={{ tabBarLabel: 'Hjem', headerTitle: ""}} />
                         <BottomTab.Screen name="Events component" component={EventComponent} options={{ tabBarLabel: 'Kommende begivenheder', headerTitle: "" }} />
                         <BottomTab.Screen name="Liked events" component={LikedEventsScreen} options={{ tabBarLabel: 'Dine begivenheder', headerTitle: "" }} />
+                        <BottomTab.Screen name="Search Event" component={SearchEvent} options={{ tabBarLabel: 'Søg', headerTitle: "" }} />
                     </BottomTab.Navigator>
                 </NavigationContainer>
             </LikedEventsProvider>
