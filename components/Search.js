@@ -4,6 +4,7 @@ import SelectDropdown from 'react-native-select-dropdown';
 import {DatePicker} from "./DatePicker";
 import {getToken} from "../lib/authToken";
 import {API_KEY} from "react-native-dotenv";
+import { SearchBar } from 'react-native-elements';
 
 export const SearchBarComponent = () => {
     const [selectedCity, setSelectedCity] = useState("");
@@ -13,6 +14,7 @@ export const SearchBarComponent = () => {
 
     const apiKey = encodeURIComponent(API_KEY)
     const cities = ['Roskilde', 'København', 'Nakskov'];
+    const [searchBarText, setSearchBarText] = useState("");
 
     useEffect(() => {
         if (selectedCity) {
@@ -96,8 +98,9 @@ export const SearchBarComponent = () => {
                 rowTextStyle={{ color: '#000000' }}
             />
             <DatePickerComponent />
-
-            <Button title="Søg" onPress={handleSearch} />
+            <View>
+                <Button title="Søg" color="#22293C" onPress={handleSearch} />
+            </View>
         </View>
     );
 };

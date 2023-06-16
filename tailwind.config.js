@@ -3,7 +3,11 @@ module.exports = {
         "./components/**/*.{js,jsx,ts,tsx}",
         "./screens/**/*.{js,jsx,ts,tsx}"],
     theme: {
-    extend: {},
+    extend: {
+        colors: {
+            'primary': '#22293C'
+        }
+    },
 },
 plugins: [],
 }

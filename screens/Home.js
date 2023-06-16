@@ -12,7 +12,7 @@ export const Home = () => {
   const navigation = useNavigation();
 
   return (
-    <View style={styles.container} className="flex-1 items-center">
+    <View className="flex-1 items-center bg-primary">
       <Image 
         source={logo}
         resizeMode='contain'
@@ -23,7 +23,7 @@ export const Home = () => {
         <FrontpageOverlayButton
           source={buttonImage1}
           text='Find begivenheder'
-          onPress={() => navigation.navigate('All upcoming Events')}
+          onPress={() => navigation.navigate('Search Event')}
         />
         <FrontpageOverlayButton
           source={buttonImage2}
@@ -40,8 +40,3 @@ export const Home = () => {
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: '#22293C',
-  },
-});
