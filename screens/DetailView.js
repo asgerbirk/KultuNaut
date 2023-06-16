@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import data from "../utils/dummyData.json";
 import {View, Image, Button, Text, ScrollView, useWindowDimensions, Linking, Platform, Pressable, Share, StyleSheet} from "react-native";
 import HTML from "react-native-render-html"
-import { Feather } from '@expo/vector-icons'; 
+import SaveToCalenderButton from "../components/SaveToCalenderButton";
+import { Feather } from '@expo/vector-icons';
 import { ShareEventButton } from "../components/ShareEventButton";
 import MapView, { Marker } from 'react-native-maps';
 
@@ -12,6 +13,7 @@ export const DetailView = ({ route,  }) => {
 
     const [dummyData, setDummyData] = useState(data.result.map(item => ({ ...item })));
     const selectedItem = dummyData.find(item => item.Id === itemId);
+    const originalEvent = JSON.parse(JSON.stringify(selectedItem))
 
     function formatDate(dateString){
       const [day, month, year] = dateString.split('-').map(Number);
@@ -57,7 +59,7 @@ export const DetailView = ({ route,  }) => {
       })
       .catch((err) => console.error('An error occurred', err));
     }
-    
+
     const RenderImage = ({item}) => {
       return(
         <View>
@@ -71,7 +73,7 @@ export const DetailView = ({ route,  }) => {
         <View className="pl-3 pt-7 bg-gray-800">
           <View className="pb-2 mb-1">
             <Text className="text-white font-bold text-xl">{item.Title}</Text>
-              <View className="mt-2">  
+              <View className="mt-2">
               <Text className="text-slate-400 text-xl font-medium">{item.LocationName}</Text>
             </View>
           </View>
@@ -128,11 +130,11 @@ export const DetailView = ({ route,  }) => {
         latitude = item.Lat;
         longitude = item.Lon;
       }
-  
+
       return(
         <View style={styles.mapContainer}>
-        <MapView 
-          style={styles.map} 
+        <MapView
+          style={styles.map}
           provider={MapView.PROVIDER_GOOGLE}
           initialRegion={{
             latitude: latitude,
@@ -158,6 +160,7 @@ export const DetailView = ({ route,  }) => {
         <RenderImage item={selectedItem} />
         <RenderHeadline item={selectedItem} />
         <RenderDescription item={selectedItem} />
+        <SaveToCalenderButton event={originalEvent}/>
         <RenderMap item={selectedItem} />
         <RenderButton item={selectedItem}/>
     </ScrollView>
