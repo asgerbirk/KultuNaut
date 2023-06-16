@@ -10,7 +10,6 @@ import {LikedEventsProvider} from "../context/LikedEventsContext";
 import {LikedEventsScreen} from "../screens/LikedEventsScreen";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import { SearchEvent } from '../screens/SearchEvent';
-import {EventScreen} from "../screens/EventScreen";
 
 const Stack = createStackNavigator();
 const BottomTab = createBottomTabNavigator()
@@ -18,13 +17,13 @@ const BottomTab = createBottomTabNavigator()
 
     function HomeStack() {
         return (
-            <Stack.Navigator>
-                <Stack.Screen name="Home" component={Home} options={{ headerShown: false }}/>
-                <Stack.Screen name="All upcoming Events" component={AllEvents}  options={{ headerShown: false }}/>
-                <Stack.Screen name="Detail Event View" component={DetailView}  options={{  headerTitle: '', headerBackImage: () => <Ionicons name="arrow-back" size={30} /> }} />
-                <Stack.Screen name="Event screen" component={EventScreen}  options={{ headerShown: false }}/>
-                <Stack.Screen name="Liked events" component={LikedEventsScreen}  options={{ headerShown: false }}/>
-                <Stack.Screen name="Search Event" component={SearchEvent}  options={{ headerShown: false }}/>
+            <Stack.Navigator screenOptions={{ headerShown: false }}>
+                <Stack.Screen name="Home" component={Home}/>
+                <Stack.Screen name="All upcoming Events" component={AllEvents} options={{  headerTitle: '', headerBackImage: () => <Ionicons name="arrow-back" size={30} /> }}/>
+                <Stack.Screen name="Detail Event View" component={DetailView} options={{  headerTitle: '', headerBackImage: () => <Ionicons name="arrow-back" size={30} /> }}/>
+                <Stack.Screen name="Events component" component={EventComponent} options={{  headerTitle: '', headerBackImage: () => <Ionicons name="arrow-back" size={30} /> }}/>
+                <Stack.Screen name="Liked events" component={LikedEventsScreen} options={{  headerTitle: '', headerBackImage: () => <Ionicons name="arrow-back" size={30} /> }}/>
+                <Stack.Screen name="Search Event" component={SearchEvent} options={{  headerTitle: '', headerBackImage: () => <Ionicons name="arrow-back" size={30} /> }}/>
             </Stack.Navigator>
         );
     }
@@ -40,20 +39,19 @@ const BottomTab = createBottomTabNavigator()
 
                             if (route.name === 'HomeScreen') {
                                 iconName = focused ? 'home' : 'home-outline';
-                            } else if (route.name === 'Event screen') {
+                            } else if (route.name === 'Events component') {
                                 iconName = focused ? 'calendar' : 'calendar-outline';
                             } else if (route.name === 'Liked events') {
                                 iconName = focused ? 'heart' : 'heart-outline';
                             }else if (route.name === "Search Event"){
                                 iconName = focused ? "search" : "search-outline"
                             }
-
                             return <Ionicons name={iconName} size={size} color={color} />;
                         },
 
                     })}>
                         <BottomTab.Screen name="HomeScreen" component={HomeStack} options={{ tabBarLabel: 'Hjem', headerTitle: ""}} />
-                        <BottomTab.Screen name="Event screen" component={EventScreen} options={{ tabBarLabel: ' Begivenheder', headerTitle: "" }} />
+                        <BottomTab.Screen name="Events component" component={EventComponent} options={{ tabBarLabel: ' Begivenheder', headerTitle: "" }} />
                         <BottomTab.Screen name="Liked events" component={LikedEventsScreen} options={{ tabBarLabel: 'Dine begivenheder', headerTitle: "" }} />
                         <BottomTab.Screen name="Search Event" component={SearchEvent} options={{ tabBarLabel: 'Søg', headerTitle: "" }} />
                     </BottomTab.Navigator>
