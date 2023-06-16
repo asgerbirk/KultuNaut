@@ -54,7 +54,7 @@ const BottomTab = createBottomTabNavigator()
 
                     })}>
                         <BottomTab.Screen name="HomeScreen" component={HomeStack} options={{ tabBarLabel: 'Hjem', headerTitle: ""}} />
-                        <BottomTab.Screen name="Events component" component={EventComponent} options={{ tabBarLabel: 'Kommende begivenheder', headerTitle: "" }} />
+                        <BottomTab.Screen name="Events component" component={EventComponent} options={{ tabBarLabel: ' Begivenheder', headerTitle: "" }} />
                         <BottomTab.Screen name="Liked events" component={LikedEventsScreen} options={{ tabBarLabel: 'Dine begivenheder', headerTitle: "" }} />
                         <BottomTab.Screen name="Search Event" component={SearchEvent} options={{ tabBarLabel: 'Søg', headerTitle: "" }} />
                     </BottomTab.Navigator>
