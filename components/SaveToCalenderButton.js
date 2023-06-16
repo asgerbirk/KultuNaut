@@ -1,7 +1,7 @@
 import {Button, Linking, Modal, Text, TouchableOpacity, View} from "react-native";
-import {useState} from "react";
+import React, {useState} from "react";
 import * as Calendar from 'expo-calendar';
-import {AntDesign} from '@expo/vector-icons';
+import {AntDesign, Feather} from '@expo/vector-icons';
 import {dateFormat} from "../lib/dateFormater";
 
 const SaveToCalenderButton = (props) => {
@@ -200,10 +200,13 @@ const SaveToCalenderButton = (props) => {
             </Modal>
 
 
-            <Button
-                onPress={saveToCalender}
-                title={"Save to calender"}>
-            </Button>
+            <TouchableOpacity
+                className={"flex-row"}
+                onPress={saveToCalender}>
+                    <Feather name="calendar" size={24} color="white" />
+                    <Text className="text-white text-lg ml-3">{props.event.Startdate}</Text>
+            </TouchableOpacity>
+
         </>
     )
 }

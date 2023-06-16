@@ -83,11 +83,12 @@ export const DetailView = ({ route,  }) => {
               <Text className="text-white text-lg ml-3">{item.LocationAddress}</Text>
             </Pressable>
           </View>
+
           <View className="pb-2 flex-row ml-1 mb-2">
-            <Feather name="calendar" size={24} color="white" />
-            <Text className="text-white text-lg ml-3">{item.Enddate}</Text>
+              <SaveToCalenderButton event={originalEvent}/>
           </View>
-          <View className="pb-4">
+
+            <View className="pb-4">
             <ShareEventButton title={item.Title} link={item.Link} description={item.Shortdescription} />
           </View>
         </View>
@@ -160,7 +161,6 @@ export const DetailView = ({ route,  }) => {
         <RenderImage item={selectedItem} />
         <RenderHeadline item={selectedItem} />
         <RenderDescription item={selectedItem} />
-        <SaveToCalenderButton event={originalEvent}/>
         <RenderMap item={selectedItem} />
         <RenderButton item={selectedItem}/>
     </ScrollView>
