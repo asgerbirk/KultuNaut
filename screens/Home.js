@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import { View, Image, StatusBar } from 'react-native';
+import React from 'react';
+import { View, Image } from 'react-native';
 import { FrontpageOverlayButton } from '../components/FrontpageOverlayButton';
 import logo from '../assets/kultunaut_logo.png';
 import buttonImage1 from '../assets/frontpage_image_1.jpg';
@@ -10,16 +10,6 @@ import {useNavigation} from "@react-navigation/native";
 export const Home = () => {
 
   const navigation = useNavigation();
-
-  useEffect(() => {
-    StatusBar.setBarStyle('dark-content'); // This is for IOS
-    StatusBar.setBackgroundColor('#FFFFFF'); // This is for Android
-
-    return () => {
-      StatusBar.setBarStyle('default'); 
-      StatusBar.setBackgroundColor('default color'); 
-    };
-  }, []);
 
   return (
     <View className="flex-1 items-center bg-primary">
@@ -38,14 +28,13 @@ export const Home = () => {
         <FrontpageOverlayButton
           source={buttonImage2}
           text='Kommende begivenheder'
-          onPress={() => navigation.navigate('Events component')}
+          onPress={() => navigation.navigate('Event screen')}
         />
         <FrontpageOverlayButton
           source={buttonImage3}
           text='Dine begivenheder'
           onPress={() => navigation.navigate('Liked events')}
         />
-
       </View>
     </View>
   );
