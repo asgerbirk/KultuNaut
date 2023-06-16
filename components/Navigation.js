@@ -7,6 +7,7 @@ import {Home} from "../screens/Home";
 import {EventComponent} from "./EventComponent";
 import {LikedEventsProvider} from "../context/LikedEventsContext";
 import {LikedEventsScreen} from "../screens/LikedEventsScreen";
+import { SearchEvent } from '../screens/SearchEvent';
 
 const Stack = createStackNavigator();
 export const Navigation = () => {
@@ -24,6 +25,7 @@ export const Navigation = () => {
                 <Stack.Screen name="HomeTwo" component={Home} />
                 <Stack.Screen name="Events component" component={EventComponent} />
                 <Stack.Screen name="Liked events" component={LikedEventsScreen} />
+                <Stack.Screen name="Search Event" component={SearchEvent} />
             </Stack.Navigator>
         </NavigationContainer>
          </LikedEventsProvider>
