@@ -15,20 +15,19 @@ const Stack = createStackNavigator();
 const BottomTab = createBottomTabNavigator()
 
 
-    function HomeStack() {
-        return (
-            <Stack.Navigator screenOptions={{ headerShown: false }}>
-                 <Stack.Screen name="Home" component={Home}/>
-                <Stack.Screen name="All upcoming Events" component={AllEvents} />
-                <Stack.Screen name="Detail Event View" component={DetailView} />
-                <Stack.Screen name="Events component" component={EventComponent} />
-                <Stack.Screen name="Liked events" component={LikedEventsScreen} />
-                <Stack.Screen name="Search Event" component={SearchEvent} />
+function HomeStack() {
+    return (
+        <Stack.Navigator>
+            <Stack.Screen name="Home" component={Home} options={{ headerShown: false }}/>
+            <Stack.Screen name="All upcoming Events" component={AllEvents} options={{  headerTitle: '', headerBackImage: () => <Ionicons name="arrow-back" size={30} /> }}/>
+            <Stack.Screen name="Detail Event View" component={DetailView} options={{  headerTitle: '', headerBackImage: () => <Ionicons name="arrow-back" size={30} /> }} />
+            <Stack.Screen name="Events component" component={EventComponent} options={{  headerTitle: '', headerBackImage: () => <Ionicons name="arrow-back" size={30} /> }}/>
+            <Stack.Screen name="Liked events" component={LikedEventsScreen} options={{  headerTitle: '', headerBackImage: () => <Ionicons name="arrow-back" size={30} /> }}/>
+            <Stack.Screen name="Search Event" component={SearchEvent} options={{  headerTitle: '', headerBackImage: () => <Ionicons name="arrow-back" size={30} /> }}/>
+        </Stack.Navigator>
+    );
+}
 
-
-            </Stack.Navigator>
-        );
-    }
 
 
     export const Navigation = () => {
@@ -36,6 +35,7 @@ const BottomTab = createBottomTabNavigator()
             <LikedEventsProvider>
                 <NavigationContainer>
                     <BottomTab.Navigator screenOptions={({ route }) => ({
+                        headerShown: false,
                         tabBarIcon: ({ focused, color, size }) => {
                             let iconName;
 
