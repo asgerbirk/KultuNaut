@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Button, Text } from 'react-native';
+import { View, Button, Text, TouchableOpacity } from 'react-native';
 import DateTimePicker from '@react-native-community/datetimepicker';
 
 export const DatePicker = () => {
@@ -13,8 +13,10 @@ export const DatePicker = () => {
     };
 
     return (
-        <View>
-            <Button title="Vælg dato" onPress={() => setShowCalendar(true)} />
+        <View className="flex w-1/4">
+            <TouchableOpacity className="border rounded-lg h-8" onPress={() => setShowCalendar(true)}>
+                <Text className="text-center justify-center items-center">{selectedDate.toLocaleDateString()}</Text>
+            </TouchableOpacity>
             {showCalendar && (
                 <DateTimePicker
                     value={selectedDate}
@@ -23,7 +25,6 @@ export const DatePicker = () => {
                     onChange={handleDateChange}
                 />
             )}
-            <Text>Valgt dato: {selectedDate.toDateString()}</Text>
         </View>
     );
 };

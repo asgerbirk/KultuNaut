@@ -9,6 +9,7 @@ import {EventComponent} from "./EventComponent";
 import {LikedEventsProvider} from "../context/LikedEventsContext";
 import {LikedEventsScreen} from "../screens/LikedEventsScreen";
 import Ionicons from "react-native-vector-icons/Ionicons";
+import { SearchEvent } from '../screens/SearchEvent';
 
 const Stack = createStackNavigator();
 const BottomTab = createBottomTabNavigator()
@@ -20,6 +21,8 @@ const BottomTab = createBottomTabNavigator()
                  <Stack.Screen name="Home" component={Home}/>
                 <Stack.Screen name="All upcoming Events" component={AllEvents} />
                 <Stack.Screen name="Detail Event View" component={DetailView} />
+
+                <Stack.Screen name="Search Event" component={SearchEvent} />
             </Stack.Navigator>
         );
     }
