@@ -35,6 +35,7 @@ export const Home = () => {
           text='Dine begivenheder'
           onPress={() => navigation.navigate('Liked events')}
         />
+
       </View>
     </View>
   );
