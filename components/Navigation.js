@@ -21,7 +21,7 @@ const BottomTab = createBottomTabNavigator()
             <Stack.Navigator>
                 <Stack.Screen name="Home" component={Home} options={{ headerShown: false }}/>
                 <Stack.Screen name="All upcoming Events" component={AllEvents}  options={{ headerShown: false }}/>
-                <Stack.Screen name="Detail Event View" component={DetailView}  options={{  headerTitle: '', headerBackImage: () => <Ionicons name="arrow-back" size={30} /> }} />
+                <Stack.Screen name="Detail Event View" component={DetailView}  options={{  headerTitle: ''}} />
                 <Stack.Screen name="Event screen" component={EventScreen}  options={{ headerShown: false }}/>
                 <Stack.Screen name="Liked events" component={LikedEventsScreen}  options={{ headerShown: false }}/>
                 <Stack.Screen name="Search Event" component={SearchEvent}  options={{ headerShown: false }}/>
