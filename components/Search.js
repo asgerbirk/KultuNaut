@@ -4,6 +4,7 @@ import SelectDropdown from 'react-native-select-dropdown';
 import {DatePicker} from "./DatePicker";
 import {getToken} from "../lib/authToken";
 import {API_KEY} from "react-native-dotenv";
+import {SearchedEvents} from "./SearchedEvents";
 import { SearchBar } from 'react-native-elements';
 
 export const SearchBarComponent = () => {
@@ -11,9 +12,11 @@ export const SearchBarComponent = () => {
     const [selectedDate, setSelectedDate] = useState(new Date());
     const [longitude, setLongitude] = useState("");
     const [latitude, setLatitude] = useState("");
+    const [ids, setIds] = useState("");
 
     const apiKey = encodeURIComponent(API_KEY)
-    const cities = ['Roskilde', 'København', 'Nakskov'];
+
+    const cities = ['Roskilde', 'København', 'Nakskov', 'Århus', 'Odense', 'Randers', 'Esbjerg'];
     const [searchBarText, setSearchBarText] = useState("");
 
     useEffect(() => {
@@ -52,9 +55,9 @@ export const SearchBarComponent = () => {
     const handleSearch = () => {
         if (selectedCity) {
             const radius = 1000; // Radius parameter (skift til den ønskede standardværdi)
-            console.log(token);
             const url = `https://www.kultunaut.dk/perl/api2/EventLonLatDate?lat=${latitude}&lon=${longitude}&radius=${radius}&fieldlist=Changed`;
-            console.log(url)
+            // fieldlist=??? er til at filtere. Lige pt er det "changed", som er de events der er "changed" sidst.
+            //console.log(url)
 
             fetch(url, {
                 headers: {
@@ -63,9 +66,9 @@ export const SearchBarComponent = () => {
             })
                 .then(response => response.json())
                 .then(data => {
-                    // Handle the response data
-                    console.log('Results:', data);
-                    // Update your state variable or perform other actions with the result
+                    const ids = data.result.map(item => item.Id);
+                    const idsComma = ids.join(",");
+                    setIds(idsComma);
                 })
                 .catch(error => {
                     console.error('Error:', error);
@@ -101,6 +104,7 @@ export const SearchBarComponent = () => {
             <View>
                 <Button title="Søg" color="#22293C" onPress={handleSearch} />
             </View>
+            { ids && <SearchedEvents data={ids}/> }
         </View>
     );
 };
