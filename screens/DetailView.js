@@ -6,7 +6,7 @@ import { Feather } from '@expo/vector-icons';
 import { ShareEventButton } from "../components/ShareEventButton";
 import MapView, { Marker } from 'react-native-maps';
 
-export const DetailView = ({ route }) => {
+export const DetailView = ({ route,  }) => {
     const {eventId} = route.params;
     const itemId = Number(eventId);
 
