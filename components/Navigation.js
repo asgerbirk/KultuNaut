@@ -17,13 +17,13 @@ const BottomTab = createBottomTabNavigator()
 
     function HomeStack() {
         return (
-            <Stack.Navigator screenOptions={{ headerShown: false }}>
-                <Stack.Screen name="Home" component={Home}/>
-                <Stack.Screen name="All upcoming Events" component={AllEvents} options={{  headerTitle: '', headerBackImage: () => <Ionicons name="arrow-back" size={30} /> }}/>
-                <Stack.Screen name="Detail Event View" component={DetailView} options={{  headerTitle: '', headerBackImage: () => <Ionicons name="arrow-back" size={30} /> }}/>
-                <Stack.Screen name="Events component" component={EventComponent} options={{  headerTitle: '', headerBackImage: () => <Ionicons name="arrow-back" size={30} /> }}/>
-                <Stack.Screen name="Liked events" component={LikedEventsScreen} options={{  headerTitle: '', headerBackImage: () => <Ionicons name="arrow-back" size={30} /> }}/>
-                <Stack.Screen name="Search Event" component={SearchEvent} options={{  headerTitle: '', headerBackImage: () => <Ionicons name="arrow-back" size={30} /> }}/>
+            <Stack.Navigator>
+                <Stack.Screen name="Home" component={Home} options={{ headerShown: false }}/>
+                <Stack.Screen name="All upcoming Events" component={AllEvents}  options={{ headerShown: false }}/>
+                <Stack.Screen name="Detail Event View" component={DetailView}  options={{  headerTitle: ''}} />
+                <Stack.Screen name="Event screen" component={EventScreen}  options={{ headerShown: false }}/>
+                <Stack.Screen name="Liked events" component={LikedEventsScreen}  options={{ headerShown: false }}/>
+                <Stack.Screen name="Search Event" component={SearchEvent}  options={{ headerShown: false }}/>
             </Stack.Navigator>
         );
     }
