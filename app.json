@@ -30,7 +30,7 @@
       [
         "expo-calendar",
         {
-          "calendarPermission": "The app needs to access your calendar."
+          "calendarPermission": "Denne app skal bruge tilladelse til din kalender"
         }
       ]
     ]

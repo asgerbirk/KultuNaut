@@ -1,7 +1,8 @@
-import {Button, Modal, Text, View, Linking, Pressable, TouchableOpacity, Image} from "react-native";
-import {useEffect, useState} from "react";
+import {Button, Linking, Modal, Text, TouchableOpacity, View} from "react-native";
+import {useState} from "react";
 import * as Calendar from 'expo-calendar';
 import {AntDesign} from '@expo/vector-icons';
+import {dateFormat} from "../lib/dateFormater";
 
 const SaveToCalenderButton = (props) => {
 
@@ -10,9 +11,12 @@ const SaveToCalenderButton = (props) => {
     const [noAccessCalendarModal, setNoAccessCalendarModal] = useState(false);
     const [chooseCalenderModal, setChooseCalenderModal] = useState(false);
 
+    // TOAST
+    const [toastError, setToastError] = useState(false)
+    const [toastSuccess, setToastSuccess] = useState(false)
+
     // CALENDAR
     const [userCalendars, setUserCalendars] = useState([]);
-    const [chosenCalendar, setChosenCalendar] = useState({})
 
     // DOCS
     // https://docs.expo.dev/versions/latest/sdk/calendar/
@@ -29,32 +33,38 @@ const SaveToCalenderButton = (props) => {
             accessLevel: 'readWrite',
             ownerAccount: ""
         }
-        const response = await Calendar.createCalendarAsync(details)
-        return response
+        return await Calendar.createCalendarAsync(details)
     }
 
     async function addEventToCalendar(calendar) {
         const eventInfo = props.event
-        console.log(eventInfo)
+
+        const startDate = dateFormat(eventInfo.Startdate)
+        const endDate = dateFormat(eventInfo.Enddate)
+
+        const location = `${eventInfo.LocationAddress} ${eventInfo.LocationCity} ${eventInfo.LocationCountry}`
 
         const eventData = {
-            title: 'My Event',
-            startDate: new Date(), // Set the start date of the event
-            endDate: new Date(new Date().getTime() + 60 * 60 * 1000), // Set the end date of the event (1 hour after start)
-            timeZone: 'Europe/Copenhagen', // Set the time zone
-            location: 'New York',
-            notes: 'This is a test event',
-            alarms: [{ relativeOffset: -30 }],
-        };
-
-
-
+            title: eventInfo.Title,
+            startDate,
+            endDate,
+            timeZone: 'Europe/Copenhagen',
+            location,
+            notes: eventInfo.Shortdescription,
+            alarms: [{relativeOffset: -30}],
+        }
 
 
         //const response = await Calendar.createEventAsync(calendar.id, eventData)
 
+        try {
+            await Calendar.createEventAsync(calendar.id, eventData)
+        } catch {
+            setToastError(true)
+            return
+        }
 
-
+        setToastSuccess(true)
     }
 
 
@@ -62,11 +72,14 @@ const SaveToCalenderButton = (props) => {
         (async () => {
             const {status} = await Calendar.requestCalendarPermissionsAsync()
             if (status === 'granted') {
-                const calendars = await Calendar.getCalendarsAsync(Calendar.EntityTypes.EVENT);
+
+
+                const allCalendars = await Calendar.getCalendarsAsync(Calendar.EntityTypes.EVENT);
+                const calendars = allCalendars.filter(calendar => calendar.accessLevel !== 'read')
+
 
                 if (calendars.length !== 0) {
                     setUserCalendars(() => [...calendars])
-
                     setChooseCalenderModal(true)
                 } else {
                     const response = await createBasicCalendar()
@@ -79,6 +92,7 @@ const SaveToCalenderButton = (props) => {
         })()
     }
 
+
     return (
         <>
             {/* CHOOSE CALENDAR*/}
@@ -90,9 +104,22 @@ const SaveToCalenderButton = (props) => {
                     setNoAccessCalendarModal(false);
                 }}>
 
-                <View className={"x-0  mx-auto my-auto bg-gray-300 w-1/2 h-1/4 p-5 rounded"}>
-                    <View className={"flex justify-between h-full"}>
+                <View className={"x-0 mx-auto my-auto bg-gray-50 w-3/4 h-3/4 p-5 rounded"}>
+                    <View className={"flex justify-between   h-full "}>
                         <View>
+
+                            {toastError &&
+                                <View className={`border-red-400 border rounded  w-full p-3 transition-all   mb-3`}>
+                                    <Text className={`text-red-700 text-center `}>Kunne ikke gemme event</Text>
+                                </View>
+                            }
+
+                            {toastSuccess &&
+                                <View className={` border-green-400  border rounded   w-full p-3 transition-all   mb-3`}>
+                                    <Text className={`text-green-700 text-center `}>Event er tilføjet til kalender</Text>
+                                </View>
+                            }
+
                             <Text className={"font-bold"}>Vælg Kalender:</Text>
                             <Text>her vises en liste af alle kalender på telefonen</Text>
                             <View className={"border-t mt-2 border-gray-200"}>
@@ -102,7 +129,9 @@ const SaveToCalenderButton = (props) => {
                                           className={"flex flex-row justify-between py-1 bg-gray-100 px-1 rounded mt-2 items-center"}>
                                         <Text>{calendar.name}</Text>
                                         <TouchableOpacity
-                                            onPress={() => {addEventToCalendar(calendar)}}
+                                            onPress={async () => {
+                                                await addEventToCalendar(calendar)
+                                            }}
                                         >
                                             <View className={"p-1 flex justify-center"}>
                                                 <AntDesign name="rightcircleo" size={20} color="black"/>
@@ -110,7 +139,6 @@ const SaveToCalenderButton = (props) => {
                                         </TouchableOpacity>
                                     </View>
                                 ))}
-
                             </View>
                         </View>
 
@@ -118,6 +146,8 @@ const SaveToCalenderButton = (props) => {
                             <TouchableOpacity
                                 onPress={() => {
                                     setChooseCalenderModal(false)
+                                    setToastSuccess(false)
+                                    setToastError(false)
                                 }}
                             >
                                 <View className={" bg-blue-200 p-2 rounded"}>

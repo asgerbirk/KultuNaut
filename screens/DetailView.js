@@ -10,9 +10,9 @@ export const DetailView = ({ route }) => {
 
     const [dummyData, setDummyData] = useState(data.result.map(item => ({ ...item })));
     const selectedItem = dummyData.find(item => item.Id === itemId);
+    const originalEvent = JSON.parse(JSON.stringify(selectedItem))
 
     selectedItem.Enddate = formatDate(selectedItem.Enddate);
-
     function formatDate(dateString){
       const [day, month, year] = dateString.split('-').map(Number);
       const date = new Date(year, month - 1, day);
@@ -80,7 +80,7 @@ export const DetailView = ({ route }) => {
         <RenderHeadline item={selectedItem} />
         <RenderDescription item={selectedItem} />
         <RenderButton />
-        <SaveToCalenderButton event={selectedItem}/>
+        <SaveToCalenderButton event={originalEvent}/>
     </ScrollView>
     )
 }
