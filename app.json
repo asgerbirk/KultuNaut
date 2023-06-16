@@ -25,6 +25,14 @@
     },
     "web": {
       "favicon": ""
-    }
+    },
+    "plugins": [
+      [
+        "expo-calendar",
+        {
+          "calendarPermission": "Denne app skal bruge tilladelse til din kalender"
+        }
+      ]
+    ]
   }
 }

@@ -28,14 +28,13 @@ export const Home = () => {
         <FrontpageOverlayButton
           source={buttonImage2}
           text='Kommende begivenheder'
-          onPress={() => navigation.navigate('Events component')}
+          onPress={() => navigation.navigate('Event screen')}
         />
         <FrontpageOverlayButton
           source={buttonImage3}
           text='Dine begivenheder'
           onPress={() => navigation.navigate('Liked events')}
         />
-
       </View>
     </View>
   );
