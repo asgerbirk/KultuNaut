@@ -3,6 +3,7 @@ import data from "../utils/dummyData.json";
 import {View, Image, StyleSheet, Button, Text, ScrollView, TouchableOpacity, useWindowDimensions, Share} from "react-native";
 import HTML from "react-native-render-html"
 import { ShareEventButton } from "../components/ShareEventButton";
+import MapView, { Marker } from 'react-native-maps';
 
 export const DetailView = ({ route }) => {
     const {eventId} = route.params;
@@ -76,11 +77,49 @@ export const DetailView = ({ route }) => {
         </View>
       )
     }
+    const RenderMap = ({item}) => {
+
+      let latitude;
+      let longitude;
+
+      if(item.Lon == null || item.Lat == null){
+        latitude = 55.676098;
+        longitude = 12.568337;
+      } else {
+        latitude = item.Lat;
+        longitude = item.Lon;
+      }
+  
+      return(
+        <View style={styles.mapContainer}>
+        <MapView 
+          style={styles.map} 
+          provider={MapView.PROVIDER_GOOGLE}
+          initialRegion={{
+            latitude: latitude,
+            longitude: longitude,
+            latitudeDelta: 0.0922,
+            longitudeDelta: 0.0421,
+          }}
+         >
+         <Marker
+            coordinate={{
+              latitude: latitude,
+              longitude: longitude,
+            }}
+            title={item.Title}
+            description={item.LocationName}
+          />
+        </MapView>
+      </View>
+      );
+    };
     return(
     <ScrollView>
         <RenderImage item={selectedItem} />
         <RenderHeadline item={selectedItem} />
         <RenderDescription item={selectedItem} />
+        <RenderMap item={selectedItem} />
         <RenderButton />
     </ScrollView>
     )
@@ -100,5 +139,12 @@ const styles = StyleSheet.create({
     position:'absolute',
     bottom:0,
     alignSelf:'flex-end'
+  },
+  mapContainer: {
+    height: 300,
+    width: '100%',
+  },
+  map: {
+    ...StyleSheet.absoluteFillObject, // Makes the map fill the entire mapContainer View
   },
 })
