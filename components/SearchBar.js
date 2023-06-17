@@ -57,7 +57,7 @@ export const SearchComponent = () => {
         }
     }, [selectedCity]);
 
-
+/*
     useEffect(() => {
         const url = `https://www.kultunaut.dk/perl/api2/EventId?Id=${ids}`;
 
@@ -81,11 +81,12 @@ export const SearchComponent = () => {
     }, [ids]);
 
 
+ */
+
     const handleSearch = () => {
         if (selectedCity) {
-            const radius = 1000; // Radius parameter (skift til den ønskede standardværdi)
+            const radius = 1000;
             const url = `https://www.kultunaut.dk/perl/api2/EventLonLatDate?lat=${latitude}&lon=${longitude}&radius=${radius}&fieldlist=Changed`;
-            // fieldlist=??? er til at filtere. Lige pt er det "changed", som er de events der er "changed" sidst.
 
             fetch(url, {
                 headers: {
@@ -96,7 +97,21 @@ export const SearchComponent = () => {
                 .then(data => {
                     const ids = data.result.map(item => item.Id);
                     const idsComma = ids.join(",");
-                    setIds(idsComma);
+
+                    const secondUrl = `https://www.kultunaut.dk/perl/api2/EventId?Id=${idsComma}`;
+                    return fetch(secondUrl, {
+                        headers: {
+                            Authorization: `Bearer ${token}`,
+                        },
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    const dataToDisplay = data.result.map(item => ({
+                        ...item,
+                        isLiked: likedEvents.some(likedEvent => likedEvent.Id === item.id)
+                    }));
+                    setDisplayData(dataToDisplay);
                 })
                 .catch(error => {
                     console.error('Error:', error);

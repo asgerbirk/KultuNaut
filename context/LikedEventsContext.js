@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 export const LikedEventsContext = React.createContext();
-
 export const LikedEventsProvider = ({children}) => {
     const [likedEvents, setLikedEvents] = useState([])
 
