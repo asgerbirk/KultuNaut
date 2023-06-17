@@ -5,7 +5,6 @@ import {DatePicker} from "./DatePicker";
 import {getToken} from "../lib/authToken";
 import {API_KEY} from "react-native-dotenv";
 import {SearchedEvents} from "./SearchedEvents";
-import { SearchBar } from 'react-native-elements';
 
 export const SearchBarComponent = () => {
     const [selectedCity, setSelectedCity] = useState("");
@@ -17,12 +16,10 @@ export const SearchBarComponent = () => {
     const apiKey = encodeURIComponent(API_KEY)
 
     const cities = ['Roskilde', 'København', 'Nakskov', 'Århus', 'Odense', 'Randers', 'Esbjerg'];
-    const [searchBarText, setSearchBarText] = useState("");
 
     useEffect(() => {
         if (selectedCity) {
             const url = `https://www.mapquestapi.com/geocoding/v1/address?key=${apiKey}&location=${selectedCity}`;
-
             fetch(url)
                 .then(response => response.json())
                 .then(data => {
@@ -33,7 +30,7 @@ export const SearchBarComponent = () => {
                     console.log('Breddegrad:', lat);
                 })
                 .catch(error => {
-                    console.error('Fejl:', error);
+                    console.error('Fejl test test:', error);
                 });
         }
     }, [selectedCity]);
@@ -57,7 +54,7 @@ export const SearchBarComponent = () => {
             const radius = 1000; // Radius parameter (skift til den ønskede standardværdi)
             const url = `https://www.kultunaut.dk/perl/api2/EventLonLatDate?lat=${latitude}&lon=${longitude}&radius=${radius}&fieldlist=Changed`;
             // fieldlist=??? er til at filtere. Lige pt er det "changed", som er de events der er "changed" sidst.
-            //console.log(url)
+
 
             fetch(url, {
                 headers: {

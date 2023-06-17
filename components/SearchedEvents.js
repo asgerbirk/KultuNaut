@@ -21,7 +21,7 @@ export const SearchedEvents = ({ data: ids }) => {
 
     useEffect(() => {
         const url = `https://www.kultunaut.dk/perl/api2/EventId?Id=${ids}`;
-        console.log("URL til hentning af data: " + url);
+        //console.log("URL til hentning af data: " + url);
 
         fetch(url, {
             headers: {
@@ -62,6 +62,7 @@ export const SearchedEvents = ({ data: ids }) => {
         );
     };
 
+    if(displayData){
     return (
         <FlatList
             data={displayData}
@@ -69,4 +70,9 @@ export const SearchedEvents = ({ data: ids }) => {
             keyExtractor={(item) => item.Id.toString()}
         />
     );
+    }else {
+        return (
+            <Text>Ingen begivenhder</Text>
+        )
+    }
 };
