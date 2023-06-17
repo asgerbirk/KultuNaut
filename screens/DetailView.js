@@ -1,13 +1,18 @@
 import React, { useState, useEffect } from 'react';
-import data from "../utils/dummyData.json";
-import {View, Image, Button, Text, ScrollView, useWindowDimensions, Linking, Platform, Pressable, Share, StyleSheet} from "react-native";
+import data from "../utils/xeniusData.json";
+import {View, Image, Button, Text, ScrollView, useWindowDimensions, Linking, Platform, Pressable, Share, StyleSheet, TouchableOpacity} from "react-native";
 import HTML from "react-native-render-html"
 import SaveToCalenderButton from "../components/SaveToCalenderButton";
 import { Feather } from '@expo/vector-icons';
 import { ShareEventButton } from "../components/ShareEventButton";
 import MapView, { Marker } from 'react-native-maps';
+import { useNavigation } from '@react-navigation/native';
 
-export const DetailView = ({ route,  }) => {
+
+export const DetailView = ({ route  }) => {
+
+    const navigation = useNavigation();
+
     const {eventId} = route.params;
     const itemId = Number(eventId);
 
@@ -64,6 +69,11 @@ export const DetailView = ({ route,  }) => {
       return(
         <View>
           <Image source={{uri: item.Image}} className="h-56 w-full" resizeMode={"cover"}/>
+
+          <TouchableOpacity className="w-20 h-10 ml-2 mt-2 bg-black rounded justify-center items-center z-1 absolute" onPress={() => navigation.goBack()}>
+              <Text className="text-white text-base font-bold">Tilbage</Text>
+          </TouchableOpacity>
+
         </View>
       )
     }

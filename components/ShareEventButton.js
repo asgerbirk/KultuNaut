@@ -16,9 +16,9 @@ function shareEvent(title, link, description) {
 
 export const ShareEventButton = ({title, link, description}) => (
     <TouchableOpacity 
-        className="w-32 h-12 bg-gray-500 rounded justify-center items-center"
+        className="w-32 h-12 bg-black rounded justify-center items-center"
         onPress={() => shareEvent(title, link, description)}
     >
-        <Text className="text-white text-base">Share event</Text>
+        <Text className="text-white text-base font-bold">Del begivenhed</Text>
     </TouchableOpacity>
 );

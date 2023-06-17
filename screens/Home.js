@@ -23,20 +23,19 @@ export const Home = () => {
         <FrontpageOverlayButton
           source={buttonImage1}
           text='Find begivenheder'
-          onPress={() => navigation.navigate('Search Event')}
+          onPress={() => navigation.navigate('SearchEventStack', { screen: 'Search Event' })}
         />
         <FrontpageOverlayButton
           source={buttonImage2}
           text='Kommende begivenheder'
-          onPress={() => navigation.navigate('Event screen')}
+          onPress={() => navigation.navigate('EventStack', { screen: 'Event screen' })}
         />
         <FrontpageOverlayButton
           source={buttonImage3}
           text='Dine begivenheder'
-          onPress={() => navigation.navigate('Liked events')}
+          onPress={() => navigation.navigate('LikedEventsStack', { screen: 'Liked events' })}
         />
       </View>
     </View>
   );
 }
-

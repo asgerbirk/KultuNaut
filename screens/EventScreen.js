@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { FlatList } from 'react-native';
 import { LikedEventsContext } from "../context/LikedEventsContext";
-import data from "../utils/dummyData";
+import data from "../utils/xeniusData.json";
 import {EventComponent} from "../components/EventComponent";
 
 

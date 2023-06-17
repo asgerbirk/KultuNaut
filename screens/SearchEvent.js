@@ -3,7 +3,7 @@ import {View, Text, FlatList, TextInput, Button, SelectDropdown} from "react-nat
 import { EvilIcons } from '@expo/vector-icons';
 import { DatePicker } from '../components/DatePicker';
 import { MaterialIcons } from '@expo/vector-icons';
-import data from "../utils/dummyData";
+import data from "../utils/xeniusData.json";
 
 export const SearchEvent = () => {
     const [searchBarText, setSearchBarText] = useState('');
