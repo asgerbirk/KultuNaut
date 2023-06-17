@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import data from "../utils/xeniusData.json";
 import {View, Image, Button, Text, ScrollView, useWindowDimensions, Linking, Platform, Pressable, Share, StyleSheet, TouchableOpacity} from "react-native";
 import HTML from "react-native-render-html"
 import SaveToCalenderButton from "../components/SaveToCalenderButton";
@@ -9,15 +8,14 @@ import MapView, { Marker } from 'react-native-maps';
 import { useNavigation } from '@react-navigation/native';
 
 
-export const DetailView = ({ route  }) => {
+export const DetailView = ({ route }) => {
 
     const navigation = useNavigation();
 
-    const {eventId} = route.params;
+    const {eventId, itemData} = route.params;
     const itemId = Number(eventId);
 
-    const [dummyData, setDummyData] = useState(data.result.map(item => ({ ...item })));
-    const selectedItem = dummyData.find(item => item.Id === itemId);
+    const selectedItem = itemData;
     const originalEvent = JSON.parse(JSON.stringify(selectedItem))
 
     function formatDate(dateString){

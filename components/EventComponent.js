@@ -10,7 +10,7 @@ export const EventComponent = ({ item }) => {
     const { toggleLike } = useContext(LikedEventsContext);
 
     return (
-        <TouchableOpacity onPress={() => navigation.navigate('Detail Event View', { eventId: item.Id })}>
+        <TouchableOpacity onPress={() => navigation.navigate('Detail Event View', { eventId: item.Id, itemData: item })}>
             <View className="p-1.5 bg-gray-800">
                 <View className="p-2.5 bg-white">
                     <Text className="font-bold text-sm">{item.Tags + " -"}</Text>
