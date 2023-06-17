@@ -46,7 +46,7 @@ function LikedEventsStack() {
 function SearchEventStack() {
     return (
         <Stack.Navigator screenOptions={{ headerShown: false }}>
-            <Stack.Screen name="Search Event" component={SearchBarComponent}/> <!-- Har erstattet med en anden search component -->
+            <Stack.Screen name="Search Event" component={SearchBarComponent}/>
             <Stack.Screen name="Detail Event View"  component={DetailView}/>
         </Stack.Navigator>
     );
