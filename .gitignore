@@ -20,4 +20,3 @@ web-build/
 
 # Package-lock.json so we don't get merge conflicts
 package-lock.json
-xeniusData.json
