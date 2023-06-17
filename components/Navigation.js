@@ -10,7 +10,7 @@ import {LikedEventsProvider} from "../context/LikedEventsContext";
 import {LikedEventsScreen} from "../screens/LikedEventsScreen";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import { SearchEvent } from '../screens/SearchEvent';
-import {SearchBarComponent} from "./Search";
+import {SearchComponent} from "./SearchBar";
 
 const Stack = createStackNavigator();
 const BottomTab = createBottomTabNavigator()
@@ -46,7 +46,7 @@ function LikedEventsStack() {
 function SearchEventStack() {
     return (
         <Stack.Navigator screenOptions={{ headerShown: false }}>
-            <Stack.Screen name="Search Event" component={SearchBarComponent}/>
+            <Stack.Screen name="Search Event" component={SearchComponent}/>
             <Stack.Screen name="Detail Event View"  component={DetailView}/>
         </Stack.Navigator>
     );
