@@ -7,6 +7,9 @@ import {LikedEventsContext} from "../context/LikedEventsContext";
 import Icon from "react-native-vector-icons/FontAwesome";
 import {DatePicker} from "./DatePicker";
 import { useNavigation } from "@react-navigation/native";
+import logo from '../assets/kultunaut_logo.png';
+
+
 
 export const SearchComponent = () => {
     const navigation = useNavigation();
@@ -25,6 +28,9 @@ export const SearchComponent = () => {
     const onDateChange = (date) => {
         setSelectedDate(date);
     };
+    const emptyDisplayData = () => {
+        setDisplayData([]);
+    };
 
     useEffect( () => {
         const fetchToken = async() => {
@@ -37,7 +43,7 @@ export const SearchComponent = () => {
 
     const apiKey = encodeURIComponent(API_KEY)
 
-
+    
     const cities = ['Roskilde', 'København', 'Nakskov', 'Århus', 'Odense', 'Randers', 'Esbjerg'];
 
     useEffect(() => {
@@ -160,51 +166,45 @@ export const SearchComponent = () => {
 
     if(displayData.length === 0) {
         return (
-        <View>
-            <Text>Vælg by:</Text>
-            <SelectDropdown
-                data={cities}
-                onSelect={(selectedItem) => setSelectedCity(selectedItem)}
-                defaultValue={'Vælg en by'}
-                buttonTextAfterSelection={(selectedItem) => selectedItem}
-                rowTextForSelection={(item) => item}
-                buttonStyle={{backgroundColor: '#DDDDDD'}}
-                buttonTextStyle={{color: '#000000'}}
-                dropdownStyle={{backgroundColor: '#FFFFFF'}}
-                rowStyle={{backgroundColor: '#FFFFFF'}}
-                rowTextStyle={{color: '#000000'}}
-            />
-            <DatePickerComponent />
-            <View>
-                <Button title="Søg" color="#22293C" onPress={handleSearch}/>
+        <View className="bg-primary flex-1">
+            <View className="flex flex-col items-center mt-8">
+                <Text className="text-4xl text-slate-200 font-bold">Søg efter begivenheder</Text>
+                    <Image 
+                    source={logo}
+                    resizeMode='contain'
+                    className="w-80 h-28 my-7"
+                    />
             </View>
-            <Text>Ingen begivenheder</Text>
+            <View className="w-full items-center justify-center">
+                <SelectDropdown
+                    data={cities}
+                    onSelect={(selectedItem) => setSelectedCity(selectedItem)}
+                    defaultButtonText={'Vælg en by'}
+                    buttonTextAfterSelection={(selectedItem) => selectedItem}
+                    rowTextForSelection={(item) => item}
+                />
+            </View>
+            <View className="justify-center items-center mt-2">
+                <Text className="text-slate-200 text-lg font-bold">Vælg en dato:</Text>
+            </View>
+            <DatePickerComponent />
+            <TouchableOpacity className="bg-slate-200 p-3 justify-center items-center w-fit left-0 right-0 absolute bottom-0 self-end" onPress={handleSearch}>
+                <Text className="text-black text-xl font-bold">Søg</Text>
+            </TouchableOpacity>
         </View>
     )
     }else {
         return (
-            <View>
-                <Text>Vælg by:</Text>
-                <SelectDropdown
-                    data={cities}
-                    onSelect={(selectedItem) => setSelectedCity(selectedItem)}
-                    defaultValue={'Vælg en by'}
-                    buttonTextAfterSelection={(selectedItem) => selectedItem}
-                    rowTextForSelection={(item) => item}
-                    buttonStyle={{backgroundColor: '#DDDDDD'}}
-                    buttonTextStyle={{color: '#000000'}}
-                    dropdownStyle={{backgroundColor: '#FFFFFF'}}
-                    rowStyle={{backgroundColor: '#FFFFFF'}}
-                    rowTextStyle={{color: '#000000'}}
-                />
-                <View>
-                    <Button title="Søg" color="#22293C" onPress={handleSearch}/>
-                </View>
+            <View className="bg-primary flex-1">
                 <FlatList
                     data={displayData}
                     renderItem={renderItem}
                     keyExtractor={(item) => item.Id.toString()}
                 />
+
+                    <TouchableOpacity className="bg-slate-200 p-3 justify-center items-center" onPress={emptyDisplayData}>
+                        <Text className="text-black text-xl font-bold">Søg igen</Text>
+                    </TouchableOpacity>
             </View>
         )}
 }

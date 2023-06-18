@@ -4,7 +4,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import { LikedEventsContext } from "../context/LikedEventsContext";
 import { useNavigation } from "@react-navigation/native";
 
-export const EventComponent = ({ item }) => {
+export const EventItem = ({ item }) => {
     const navigation = useNavigation();
     const { toggleLike } = useContext(LikedEventsContext);
 
