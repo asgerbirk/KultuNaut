@@ -6,9 +6,10 @@ import SelectDropdown from "react-native-select-dropdown";
 import {LikedEventsContext} from "../context/LikedEventsContext";
 import Icon from "react-native-vector-icons/FontAwesome";
 import {DatePicker} from "./DatePicker";
-
+import { useNavigation } from "@react-navigation/native";
 
 export const SearchComponent = () => {
+    const navigation = useNavigation();
     const [selectedCity, setSelectedCity] = useState("");
     const [longitude, setLongitude] = useState("");
     const [latitude, setLatitude] = useState("");
@@ -109,7 +110,7 @@ export const SearchComponent = () => {
                 .then(data => {
                     const dataToDisplay = data.result.map(item => ({
                         ...item,
-                        isLiked: likedEvents.some(likedEvent => likedEvent.Id === item.id)
+                        isLiked: likedEvents.some(likedEvent => likedEvent.Id === item.Id)
                     }));
                     setDisplayData(dataToDisplay);
                 })
@@ -118,6 +119,14 @@ export const SearchComponent = () => {
                 });
         }
     };
+
+    useEffect(() => {
+        const updateLike = displayData.map(item => ({
+            ...item,
+            isLiked: likedEvents.some(likedEvent => likedEvent.Id === item.Id)
+        }));
+        setDisplayData(updateLike);
+    }, [likedEvents]);
 
     const DatePickerComponent = () => {
         return (
@@ -130,20 +139,22 @@ export const SearchComponent = () => {
 
     const renderItem = ({ item }) => {
         return (
-            <View className="p-1.5 bg-gray-800">
-                <View className="p-2.5 bg-white">
-                    <Text className="font-bold text-sm">{item.Tags + " -"}</Text>
-                    <View className="flex-row">
-                        <Text className="">{item.Startdate + ","}</Text>
-                        <Text className="font-bold"> {item.LocationName} </Text>
+            <TouchableOpacity onPress={() => navigation.navigate('Detail Event View', { eventId: item.Id, itemData: item })}>
+                <View className="p-1.5 bg-gray-800">
+                    <View className="p-2.5 bg-white">
+                        <Text className="font-bold text-sm">{item.Tags + " -"}</Text>
+                        <View className="flex-row">
+                            <Text className="">{item.Startdate + ","}</Text>
+                            <Text className="font-bold"> {item.LocationName} </Text>
+                        </View>
+                        <Text className="font-bold text-base">{item.Title}</Text>
+                        <Image source={{ uri: item.Image }} className="h-44 w-full" resizeMode={"cover"} />
+                        <TouchableOpacity className="absolute top-4 right-4 bg-gray-400 p-2 rounded" onPress={() => toggleLike(item)}>
+                            <Icon name={item.isLiked ? "heart" : "heart-o"} size={20} color={item.isLiked ? "#900" : "#000"} />
+                        </TouchableOpacity>
                     </View>
-                    <Text className="font-bold text-base">{item.Title}</Text>
-                    <Image source={{ uri: item.Image }} className="h-44 w-full" resizeMode={"cover"} />
-                    <TouchableOpacity className="absolute top-4 right-4 bg-gray-400 p-2 rounded" onPress={() => toggleLike(item)}>
-                        <Icon name={item.isLiked ? "heart" : "heart-o"} size={20} color={item.isLiked ? "#900" : "#000"} />
-                    </TouchableOpacity>
                 </View>
-            </View>
+            </TouchableOpacity>
         );
     };
 
