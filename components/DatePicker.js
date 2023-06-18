@@ -13,9 +13,9 @@ export const DatePicker = () => {
     };
 
     return (
-        <View className="flex w-1/4">
-            <TouchableOpacity className="border rounded-lg h-8" onPress={() => setShowCalendar(true)}>
-                <Text className="text-center justify-center items-center">{selectedDate.toLocaleDateString()}</Text>
+        <View className="flex w-full justify-center items-center">
+            <TouchableOpacity className="border rounded-lg h-8 m-3 w-3/4 bg-slate-200" onPress={() => setShowCalendar(true)}>
+                <Text className="text-center text-lg">{selectedDate.toLocaleDateString()}</Text>
             </TouchableOpacity>
             {showCalendar && (
                 <DateTimePicker
