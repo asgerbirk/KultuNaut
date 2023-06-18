@@ -1,8 +1,17 @@
 import { TouchableOpacity, Text, Share } from 'react-native';
 
 function shareEvent(title, link, description) {
+
+    let messageToShare = "";
+
+    if(link === undefined) {
+        messageToShare = `Se det her event fra Kultunaut!\n\nTitel: ${title}.\n\nBeskrivelse: ${description}`;
+    } else {
+        messageToShare = `Se det her event fra Kultunaut!\n\nTitel: ${title}.\n\nBeskrivelse: ${description}\n\nLink: ${link}`;
+    }
+    
     const shareOptions = {
-        message: `Se det her event fra Kultunaut!\n\nTitel: ${title}.\n\nBeskrivelse: ${description}\n\nLink: ${link}`,
+        message: messageToShare
       };
 
     Share.share(shareOptions)

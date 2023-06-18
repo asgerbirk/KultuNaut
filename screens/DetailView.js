@@ -108,7 +108,11 @@ export const DetailView = ({ route }) => {
           <View className="bg-white px-4">
             <Text className="text-lg pt-3 font-bold">Begivenheden</Text>
             <View className="pt-2 pb-4">
-              <HTML source={{html: item.Longdescription}} contentWidth={width} />
+            {item.Longdescription ? (
+                <HTML source={{html: item.Longdescription}} contentWidth={width} />
+            ) : (
+                <Text>Ingen beskrivelse.</Text>
+            )}
             </View>
           </View>
       );
