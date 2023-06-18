@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { FlatList } from 'react-native';
 import { LikedEventsContext } from "../context/LikedEventsContext";
-import {EventComponent} from "../components/EventComponent";
+import {EventItem} from "../components/EventItem";
 import {getToken} from "../lib/authToken";
 
 export const EventScreen = () => {
@@ -77,7 +77,7 @@ export const EventScreen = () => {
     return (
         <FlatList
             data={displayData}
-            renderItem={({ item }) => <EventComponent item={item} />}
+            renderItem={({ item }) => <EventItem item={item} />}
             keyExtractor={(item) => item.Id.toString()}
         />
     );
