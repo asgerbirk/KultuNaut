@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import {View, Image, Button, Text, ScrollView, useWindowDimensions, Linking, Platform, Pressable, Share, StyleSheet, TouchableOpacity} from "react-native";
+import React from 'react';
+import {View, Image, Button, Text, ScrollView, useWindowDimensions, Linking, Platform, Pressable, StyleSheet, TouchableOpacity} from "react-native";
 import HTML from "react-native-render-html"
 import SaveToCalenderButton from "../components/SaveToCalenderButton";
 import { Feather } from '@expo/vector-icons';
@@ -12,20 +12,10 @@ export const DetailView = ({ route }) => {
 
     const navigation = useNavigation();
 
-    const {eventId, itemData} = route.params;
-    const itemId = Number(eventId);
+    const { itemData } = route.params;
 
     const selectedItem = itemData;
     const originalEvent = JSON.parse(JSON.stringify(selectedItem))
-
-    function formatDate(dateString){
-      const [day, month, year] = dateString.split('-').map(Number);
-      const date = new Date(year, month - 1, day);
-      const options = {weekday: 'long', day: 'numeric', month: 'long', year: 'numeric'};
-      const formattedDate = date.toLocaleDateString('da-DK', options);
-      const capitalizedDate = formattedDate.charAt(0).toUpperCase() + formattedDate.slice(1);
-      return capitalizedDate;
-    }
 
     const openMaps = (lat, lon) => {
       let url = '';
@@ -184,7 +174,7 @@ const styles = StyleSheet.create({
   },
   scrollContainer: {
     flexGrow: 1,
-    paddingBottom: 60, // Adjust this value to your button's height
+    paddingBottom: 60, 
   },
   buttonContainer: {
     left: 0,

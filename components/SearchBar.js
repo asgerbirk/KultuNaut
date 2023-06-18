@@ -16,7 +16,6 @@ export const SearchComponent = () => {
     const [selectedCity, setSelectedCity] = useState("");
     const [longitude, setLongitude] = useState("");
     const [latitude, setLatitude] = useState("");
-    const [ids, setIds] = useState("");
 
     const {likedEvents, toggleLike} = useContext(LikedEventsContext); // Use the context
     const [displayData, setDisplayData] = useState([]);
@@ -63,32 +62,6 @@ export const SearchComponent = () => {
                 });
         }
     }, [selectedCity]);
-
-/*
-    useEffect(() => {
-        const url = `https://www.kultunaut.dk/perl/api2/EventId?Id=${ids}`;
-
-        fetch(url, {
-            headers: {
-                Authorization: `Bearer ${token}`,
-            },
-        })
-            .then(response => response.json())
-            .then(data => {
-
-                const dataToDisplay = data.result.map(item => ({
-                    ...item,
-                    isLiked: likedEvents.some(likedEvent => likedEvent.Id === item.id)
-                }));
-                setDisplayData(dataToDisplay);
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
-    }, [ids]);
-
-
- */
 
     const handleSearch = () => {
         if (selectedCity) {
@@ -145,7 +118,7 @@ export const SearchComponent = () => {
 
     const renderItem = ({ item }) => {
         return (
-            <TouchableOpacity onPress={() => navigation.navigate('Detail Event View', { eventId: item.Id, itemData: item })}>
+            <TouchableOpacity onPress={() => navigation.navigate('Detail Event View', { itemData: item })}>
                 <View className="p-1.5 bg-gray-800">
                     <View className="p-2.5 bg-white">
                         <Text className="font-bold text-sm">{item.Tags + " -"}</Text>

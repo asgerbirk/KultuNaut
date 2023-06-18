@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Button, Text, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 import DateTimePicker from '@react-native-community/datetimepicker';
 
 export const DatePicker = () => {

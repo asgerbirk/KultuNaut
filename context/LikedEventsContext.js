@@ -5,8 +5,7 @@ export const LikedEventsProvider = ({children}) => {
     const [likedEvents, setLikedEvents] = useState([])
 
     const toggleLike = async (event) => {
-        //tjekker hvis det allerede er liked. Some er en javascript metode der returnere true eller false.
-        //some tjekker hvis event allerede eksitere i likedEvents. den returnere true  hvis evented er allerde liket og false hvis event ikke er liket.
+        //Tjekker hvis event allerede eksitere i likedEvents. den returnere true  hvis evented er allerde liket og false hvis event ikke er liket.
         const isAlreadyLiked = likedEvents.some((likedEvent) => likedEvent.Id === event.Id);
 
         let newLikedEvents;
