@@ -54,8 +54,6 @@ export const SearchComponent = () => {
                     const { lat, lng } = data.results[0].locations[0].latLng;
                     setLatitude(lat);
                     setLongitude(lng);
-                    console.log('Længdegrad:', lng);
-                    console.log('Breddegrad:', lat);
                 })
                 .catch(error => {
                     console.error('Fejl test test:', error);

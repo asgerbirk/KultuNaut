@@ -42,7 +42,6 @@ export const DetailView = ({ route }) => {
       })
     }
     const openWebPage = (url) => {
-      console.log(url);
       Linking.canOpenURL(url).then((supported) => {
         if(!supported){
           console.log("Can't handle URL: " + url);
